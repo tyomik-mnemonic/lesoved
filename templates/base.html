@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!-- Importing OpenLayers library -->
+        
+        <link rel="stylesheet" type="text/css" href="https://openlayers.org/en/v5.2.0/css/ol.css">
+        <script src="https://openlayers.org/en/v5.2.0/build/ol.js"></script>
+        
+        <!-- Importing Extjs library -->
+<!--        
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/ext-all-debug.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/classic/theme-crisp-touch/theme-crisp-touch-debug.js"></script>
+-->
+        <!-- Importing the stylesheet triton -->
+<!--    
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/classic/theme-triton/resources/theme-triton-all-debug.css">
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/classic/theme-crisp-touch/resources/theme-crisp-touch-all-debug.css">
+-->        
+
+
+<!-- Classic 
+        <script type="text/javascript" src="/static/lib/extjs-6.2.0/classic/ext-all-debug.js"></script>
+        <link rel="stylesheet" href="/static/lib/extjs-6.2.0/classic/theme-crisp-touch/resources/theme-crisp-touch-all-debug.css">
+-->
+
+<!-- Modern -->
+        <link rel="stylesheet" href="/static/lib/extjs-6.2.0/modern/theme-material/resources/theme-material-all-debug.css"> 
+        <script type="text/javascript" src="/static/lib/extjs-6.2.0/modern/ext-modern-all-debug.js"></script>
+        <script type="text/javascript" src="/static/lib/extjs-6.2.0/modern/theme-material/theme-material-debug.js"></script>
+
+
+        {% block head %}{% endblock %}
+    </head>
+
+    <body>
+        {% block content %}{% endblock %}
+    </body>
+</html> 

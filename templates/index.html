@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Foresto{% endblock %}
+
+{% block head %}
+    <script>
+        Ext.Loader.setConfig({
+            enabled: true,
+            paths: {
+                'GeoExt': 'static/lib/geoext3-3.1.0',
+                'Foresto': 'static/forest/app'
+            }
+        });
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="static/forest/app.css">
+    <link href="https://fonts.googleapis.com/css?family=Exo+2:700&amp;subset=cyrillic" rel="stylesheet">
+    <script type='text/javascript' src='static/forest/app.js'></script>
+{% endblock %}
