@@ -34,6 +34,8 @@ Ext.define('Foresto.view.main.Main', {
             text : 'ГИС ПОДДЕРЖКИ ЛЕСОПОЛЬЗОВАНИЯ(pre-alpha)'
         }
     },
+    
+
     tools: [{
         type: 'menu',
         handler: function() {
@@ -69,27 +71,27 @@ Ext.define('Foresto.view.main.Main', {
             		text:'+Лесосека',
             		ui:'action',
             		cls: 'grbuttons',
-            		height: 35,
-            		width: 120,
-            		//margin:2,
+            		height: 40,
+            		width: 140,
+            		margin:0,
             		handler:'cutForms'
             	},{
             		text:'+Договор',
             		ui:'action',
             		cls: 'grbuttons',
             		//margin:2,
-            		height: 35,
-            		width: 120,
+            		height: 40,
+            		width: 140,
             		handler:'agreForms'
             	},{
             		xtype:'spacer'
             	},{
-            		text:'Проекты',
+            		text:'Мои проекты',
             		ui:'action',
             		//margin:2,
             		cls: 'grbuttons',
-            		height: 35,
-            		width: 120,
+            		height: 40,
+            		width: 180,
             		handler: function() {
             			
             			Ext.create('Ext.panel.Panel',{
@@ -124,11 +126,11 @@ Ext.define('Foresto.view.main.Main', {
             			})
                     }	 
             	},{
-            		text:'Лесосеки',
+            		text:'Список лесосек',
             		cls: 'grbuttons',
             		ui:'action',
-            		height: 35,
-            		width: 120,
+            		height: 40,
+            		width: 190,
             		//margin:2,
             		
             		
@@ -145,6 +147,7 @@ Ext.define('Foresto.view.main.Main', {
                     		centered:true,
                     		margin: '98 0 0 215',
                     		autoDestroy: true,
+                    		draggable : true,
                     		items:[{
                     			xtype:'contlistII'
                     		}],
@@ -374,5 +377,5 @@ Ext.define('Foresto.view.main.Main', {
     
     	
     }*/
+    
 });
-

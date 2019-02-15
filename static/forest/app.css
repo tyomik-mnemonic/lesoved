@@ -1,13 +1,13 @@
 .x-tool-search {
-	color:#415b76;
+	color:#ffffff;
 	}
 
 .x-tool-help {
-	color:#415b76;
+	color:#ffffff;
 	}
 	
 .x-tool-close {
-	color:#415b76;
+	color:#ffffff;
 	}
 
 .th {
@@ -17,7 +17,7 @@
 
 
 .header-cls{
-    background-color:#7b9ba6;
+    background-color:#181C1F;
     font-family: 'Exo 2', sans-serif;
     color:#415b76;
     font-size: 20px;
@@ -27,33 +27,33 @@
 }
 
 .hdr2{
-    background-color: #CDD6D5; 
+    background-color: #8EA6B8; 
     font-family: 'Exo 2', sans-serif;
     font-size: 18px;
     font-weight: 1000;
 	font-style: bold;
-	color:#415b76;
+	color:#ffffff;
 	float:right;
 }
 
 .tab2{
-	color: #7b9ba6;
+	color: #8EA6B8;
 }
 /*c5dfc5  9cc2af 56927e 447f70 114c44*/
 /*or
 233656 415b76 7b9ba6 cdd6d5 eef4f2
 */
 .toolbars{
-	background-color: #415b76;
+	background-color: #33536B;
 	
 }
 
 .grbuttons{
-	background-color:#415b76;
+	background-color:#33536B;
 	font-family: 'Exo 2', sans-serif;
 
-	font-weight: 800;
-	font-size:16px;
+	font-weight: 850;
+	font-size:18px;
 	color:#ffffff;
 	font-style: normal;
 	margin:0;
@@ -64,27 +64,27 @@
 	background-color:#ffffff;
 	font-family: 'Exo 2', sans-serif;
 
-	font-weight: 800;
-	font-size:16px;
+	font-weight: 850;
+	font-size:18px;
 	color:#233656; 
 	font-style: normal;
 }
 
 .grbuttons:active{
-	background-color:#233656;
+	background-color:#33536B;
 	font-family: 'Exo 2', sans-serif;
 
-	font-weight: 800;
+	font-weight: 850;
 	color:#ffffff; 
-	font-size:16px;
+	font-size:18px;
 	font-style: normal;
 }
 
 .grbuttonsBig{
-	background-color:#233656;
+	background-color:#33536B;
 	font-family: 'Exo 2', sans-serif;
 
-	font-weight: 800;
+	font-weight: 850;
 	color:#cdd6d5;
 	font-style: normal;
 	height: 20%;
@@ -100,7 +100,7 @@
 	background-color:#ffffff;
 	font: font-family: 'Exo 2', sans-serif;
 
-	font-weight: 800;
+	font-weight: 850;
 	color:#233656; 
 	font-style: normal;
 	height: 20%;
@@ -112,10 +112,10 @@
 }
 
 .grbuttonsBig:active{
-	background-color:#233656;
+	background-color:#33536B;
 	font: font-family: 'Exo 2', sans-serif;
 
-	font-weight: 800;
+	font-weight: 850;
 	color:#ffffff; 
 	font-style: normal;
 	height: 20%;
