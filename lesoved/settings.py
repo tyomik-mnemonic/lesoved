@@ -34,7 +34,9 @@ ALLOWED_HOSTS = ['*']
 
 
 MYOWN_APPS = [
-    'igt'
+    'classification_list',
+    'renter',
+    'cutarea'
     ]
 
 INSTALLED_APPS = [
@@ -51,7 +53,7 @@ INSTALLED_APPS = [
     'rest_framework_gis',
     'django_filters',
     'inspectdb_refactor',
-    
+
 ] + MYOWN_APPS
 
 MIDDLEWARE = [

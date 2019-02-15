@@ -51,13 +51,6 @@ Ext.define('Foresto.view.main.Main', {
         },
         items: [{
             
-            header: {
-            	cls : 'hdr2',
-               title : {
-                    cls : 'hdr2',
-                    text : 'КАРТА'}
-            },   
-            
             id:'mapId',
             xtype: 'panel',
             layout:'vbox',
@@ -66,15 +59,34 @@ Ext.define('Foresto.view.main.Main', {
             items: [{
             	xtype:'toolbar',
             	cls:'toolbars',
-            	width: 160,
-            	docked:'left',
+            	width: '100%',
+            	height: 45,
+            	docked:'top',
             	scrollable: {
             		y: false
             	},
             	items:[{
+            		text:'+Лесосека',
+            		ui:'action',
+            		cls: 'grbuttons',
+            		height: 35,
+            		width: 120,
+            		//margin:2,
+            		handler:'cutForms'
+            	},{
+            		text:'+Договор',
+            		ui:'action',
+            		cls: 'grbuttons',
+            		//margin:2,
+            		height: 35,
+            		width: 120,
+            		handler:'agreForms'
+            	},{
+            		xtype:'spacer'
+            	},{
             		text:'Проекты',
             		ui:'action',
-            		margin:2,
+            		//margin:2,
             		cls: 'grbuttons',
             		height: 35,
             		width: 120,
@@ -117,7 +129,7 @@ Ext.define('Foresto.view.main.Main', {
             		ui:'action',
             		height: 35,
             		width: 120,
-            		margin:2,
+            		//margin:2,
             		
             		
             		handler: function() {
@@ -161,24 +173,6 @@ Ext.define('Foresto.view.main.Main', {
             				
             			})
                     }
-            	},{
-            		xtype:'spacer'
-            	},{
-            		text:'+Лесосека',
-            		ui:'action',
-            		cls: 'grbuttons',
-            		height: 35,
-            		width: 120,
-            		margin:2,
-            		handler:'cutForms'
-            	},{
-            		text:'+Договор',
-            		ui:'action',
-            		cls: 'grbuttons',
-            		margin:2,
-            		height: 35,
-            		width: 120,
-            		handler:'agreForms'
             	}]
             },{
                 xtype: 'foresto-map',
