@@ -96,13 +96,13 @@ WSGI_APPLICATION = 'lesoved.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'lesoved',
+        'NAME': 'lesowed',
         'USER': 'postgres',
         'HOST': '172.17.0.2',
         'PASSWORD': 'ntnhfrcby_19',
         'PORT': '5432',
         'OPTIONS': {
-            'options': '-c search_path=lesoved'
+            'options': '-c search_path=lesowed'
          }
     }
 }
