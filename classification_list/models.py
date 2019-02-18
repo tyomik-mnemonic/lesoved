@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class ForestActivity(models.Model): #Виды мероприятий по использованию лесов (справочник)
     id = models.SmallIntegerField(primary_key=True)
-    activity = models.TextField(blank=True, null=True)
+    name = models.CharField(max_length=15, blank=True, null=True)
 
     class Meta:
         managed = True
@@ -22,7 +22,7 @@ class ForestKind(models.Model): #Таблица-справочник по вид
 
 class ForestObjtype(models.Model):
     id = models.SmallIntegerField(primary_key=True)
-    obj_type = models.CharField(max_length=100, blank=True, null=True)
+    name = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = True
@@ -31,7 +31,7 @@ class ForestObjtype(models.Model):
 
 class ForestProtection(models.Model):
     id = models.SmallIntegerField(primary_key=True)
-    protect_cat = models.TextField(blank=True, null=True)
+    name = models.TextField(blank=True, null=True)
     code = models.CharField(max_length=5, blank=True, null=True)
 
     class Meta:
@@ -41,16 +41,16 @@ class ForestProtection(models.Model):
 
 class ForestPurpose(models.Model): #Целевое назначение лесов в соответствии с ЛК (справочник)
     id = models.SmallIntegerField(primary_key=True)
-    purpose = models.TextField(blank=True, null=True)
+    name = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = True
-        verbose_name = 'целевое назначения'
+        verbose_name = 'целевое назначение'
 
 
 class ForestResource(models.Model):
     id = models.SmallIntegerField(primary_key=True)
-    type = models.CharField(max_length=110, blank=True, null=True)
+    name = models.CharField(max_length=110, blank=True, null=True)
 
     class Meta:
         managed = True
@@ -68,7 +68,7 @@ class ForestSort(models.Model):
 
 class ForestUse(models.Model):
     id = models.SmallIntegerField(primary_key=True)
-    name = models.TextField(blank=True, null=True)
+    name = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = True
@@ -77,7 +77,7 @@ class ForestUse(models.Model):
 
 class ForestWorks(models.Model):
     id = models.SmallIntegerField(primary_key=True)
-    name = models.TextField(blank=True, null=True)
+    name = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = True
@@ -86,7 +86,7 @@ class ForestWorks(models.Model):
 
 class Forestation(models.Model):
     id = models.SmallIntegerField(primary_key=True)
-    indicator = models.TextField(blank=True, null=True)
+    name = models.CharField(max_length=100, blank=True, null=True)
     code = models.CharField(max_length=3, blank=True, null=True)
 
     class Meta:
@@ -112,7 +112,7 @@ class Osnovanie(models.Model):
         verbose_name = 'основание'
 
 
-class PwdTest(models.Model):
+'''class PwdTest(models.Model):
     id = models.SmallIntegerField(primary_key=True) #нечто неопределенное (генка)
     acc_name = models.CharField(max_length=20, blank=True, null=True)
     pwd_hash = models.CharField(max_length=128, blank=True, null=True)
@@ -120,13 +120,14 @@ class PwdTest(models.Model):
     class Meta:
         managed = True
         verbose_name = 'генка??'
+        '''
 
 
 class Quarters(models.Model):
     id = models.SmallIntegerField(primary_key=True)
     geom = models.TextField(blank=True, null=True)  # This field type is a guess.
     forest_code = models.CharField(max_length=10, blank=True, null=True)
-    forest_name = models.CharField(max_length=20, blank=True, null=True)
+    name = models.CharField(max_length=20, blank=True, null=True)
     quarter = models.SmallIntegerField(blank=True, null=True)
 
     class Meta:
@@ -171,7 +172,7 @@ class TypesForestry(models.Model): #Таблица-справочник по т�
 
 class Viddoc(models.Model):
     id = models.IntegerField(primary_key=True)
-    type = models.TextField(blank=True, null=True)
+    name = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = True
@@ -180,7 +181,7 @@ class Viddoc(models.Model):
 class Pravform(models.Model):
 
     id = models.IntegerField(primary_key=True)
-    prav_form = models.TextField(blank=True, null=True)
+    name = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = True
@@ -189,7 +190,7 @@ class Pravform(models.Model):
 class IdentDoc(models.Model):
 
     id = models.IntegerField(primary_key=True)
-    ident_doc = models.TextField(blank=True, null=True)
+    name = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = True
@@ -200,7 +201,7 @@ class IdentDoc(models.Model):
 class UnitMeas(models.Model):
 
     id = models.IntegerField(primary_key=True)
-    qart_names = models.TextField(blank=True, null=True)
+    name = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = True

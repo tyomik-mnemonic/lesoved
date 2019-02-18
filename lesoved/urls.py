@@ -19,7 +19,40 @@ from django.conf.urls import url
 from django.views.generic import TemplateView
 from rest_framework import routers
 
+
+from classification_list import views
+
+
+router = routers.DefaultRouter()
+router.register(r'list-forest-activity', views.ForestActivitySet, base_name='list-forest-activity') #localhost:/api/Виды мероприятий по использованию лесов (справочник)
+router.register(r'list-forest-kind', views.ForestKindSet, base_name='list-forest-kind')
+router.register(r'list-forest-obj-type', views.ForestObjtypeSet, base_name='list-forest-obj-type')#api геометрии лесосеки
+router.register(r'ForestProtectionSet', views.ForestProtectionSet, base_name='ForestProtectionSet')
+router.register(r'list-forest-purpose', views.ForestPurposeSet, base_name='list-forest-purpose')
+router.register(r'list-forest-resource', views.ForestResourceSet, base_name='list-forest-resource')
+router.register(r'list-forest-sort', views.ForestSortSet, base_name='list-forest-sort')
+router.register(r'list-forest-use', views.ForestUseSet, base_name='list-forest-use')
+router.register(r'list-forest-works', views.ForestWorksSet, base_name='list-forest-works')
+router.register(r'list-forest-ation', views.ForestationSet, base_name='list-forest-ation')
+router.register(r'list-legal-documents', views.LegalDocumentsSet, base_name='list-legal-documents')
+router.register(r'list-osnovanie', views.OsnovanieSet, base_name='list-osnovanie')
+#router.register(r'PwdTestSet', views.PwdTestSet, base_name='PwdTestSet')
+router.register(r'list-quarter', views.QuartersSet, base_name='list-quarter')
+router.register(r'list-subjectRF', views.SubjectRfSet, base_name='list-subjectRF')
+router.register(r'list-type-felling', views.TypeFellingSet, base_name='list-type-felling')
+router.register(r'list-shape-felling', views.ShapeFellingSet, base_name='list-shape-felling')
+router.register(r'list-types-forestry', views.TypesForestrySet, base_name='list-types-forestry')#localhost:/api/forestry-cutarea/
+
+router.register(r'list-vid-doc', views.ViddocSet, base_name='list-vid-doc')
+router.register(r'list-prav-form', views.PravformSet, base_name='list-prav-form')
+router.register(r'list-ident-doc', views.IdentDocSet, base_name='list-ident-doc')
+router.register(r'list-unit-meas', views.UnitMeasSet, base_name='list-unit-meas')
+
+
+
 urlpatterns = [
+    url(r'^api/', include(router.urls)),
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='index.html'), name='index'),
+    url(r'^admin/dynamic_raw_id/', include('dynamic_raw_id.urls')),
 ]

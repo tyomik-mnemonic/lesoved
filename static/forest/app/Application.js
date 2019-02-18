@@ -20,6 +20,16 @@ Ext.define('Foresto.Application', {
     ],
 
     launch: function () {
+    	Ext.create({
+            xtype: 'window',
+            modal: true,
+            autoShow: true,
+            layout: 'fit',
+            title: 'Login',
+            width: 400,
+            height: 400
+        });
+    }
         // TODO - Launch the application
     },
 
