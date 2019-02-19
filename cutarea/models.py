@@ -1,11 +1,13 @@
-from django.db import models
 from renter.models import *
 from classification_list.models import*
+from django.contrib.gis.db import models
+
 
 class ForestryKeys(models.Model):
 
     id = models.IntegerField(primary_key=True)
-    df_forestry = models.TextField(blank=True, null=True)
+    df_forestry = models.TextField(blank=True, null=True),
+    geom = models.MultiPolygonField(geography=True, null=True, blank=True, verbose_name='геометрия')
 
     class Meta:
         managed = True
@@ -16,6 +18,7 @@ class DistrForestKeys(models.Model):
 
     id = models.IntegerField(primary_key=True)
     df_names = models.TextField(blank=True, null=True)
+    geom = models.MultiPolygonField(geography=True, null=True, blank=True, verbose_name='геометрия')
 
     class Meta:
         managed = True
@@ -27,8 +30,9 @@ class TractKeys(models.Model):
 
     id = models.IntegerField(primary_key=True)
     tract_name = models.TextField(blank=True, null=True)
-    forestry = models.ForeignKey(ForestryKeys, models.DO_NOTHING, blank=True, null=True)
+    forestry = models.ForeignKey(ForestryKeys, models.DO_NOTHING, blank=True, null=True) #хорошо бы оптимизировать: Всегда ли есть УЧВ?
     district_forestry = models.ForeignKey(DistrForestKeys, models.DO_NOTHING, blank=True, null=True)
+    geom = models.MultiPolygonField(geography=True, null=True, blank=True, verbose_name='геометрия')
 
 
     class Meta:
@@ -43,6 +47,7 @@ class QartalKeys(models.Model):
     forestry_id = models.ForeignKey(ForestryKeys, models.DO_NOTHING, blank=True, null=True)
     district_forestry_id = models.ForeignKey(DistrForestKeys, models.DO_NOTHING, blank=True, null=True)
     tract_id =  models.ForeignKey(TractKeys, models.DO_NOTHING, blank=True, null=True)
+    geom = models.MultiPolygonField(geography=True, null=True, blank=True, verbose_name='геометрия')
 
 
     class Meta:
@@ -55,7 +60,7 @@ class QartalKeys(models.Model):
 
 class Allotment(models.Model):  #выдел
     id = models.BigIntegerField(primary_key=True)
-    geom = models.TextField(blank=True, null=True)  # This field type is a guess.
+    geom = models.MultiPolygonField(geography=True, null=True, blank=True, verbose_name='геометрия')
     forestry_id = models.ForeignKey(ForestryKeys, models.DO_NOTHING, blank=True, null=True)
     district_forestry_id = models.ForeignKey(DistrForestKeys, models.DO_NOTHING, blank=True, null=True)
     tract_id =  models.ForeignKey(TractKeys, models.DO_NOTHING, blank=True, null=True)
@@ -103,7 +108,7 @@ class FcaUse(models.Model): #планируемое использование
     id_fca = models.ForeignKey(Fca, on_delete=models.DO_NOTHING)
     fell_form = models.ForeignKey(ShapeFelling, on_delete=models.DO_NOTHING, verbose_name='форма рубки')
     fell_type = models.ForeignKey(TypeFelling, on_delete=models.DO_NOTHING, verbose_name='вид рубки')
-    main_type = models.ForeignKey(TypesForestry, on_delete=models.DO_NOTHING, verbose_name='тип хозяйства')
+    main_type = models.ForeignKey(TypesForestry, on_delete=models.DO_NOTHING, verbose_name='тип хозяйства') #возможна ли оптимизация?
     kind = models.ForeignKey(ForestKind, on_delete=models.DO_NOTHING, verbose_name='породный состав')
     ed_izm = models.ForeignKey(UnitMeas, on_delete=models.DO_NOTHING, verbose_name='единица измерения')
     vol_drew = models.FloatField(blank=True, null=True)
@@ -167,7 +172,7 @@ class ForestSite(models.Model): #Таблица содержит данные о
     date_doc = models.DateField(blank=True, null=True)
     id_rr = models.IntegerField(blank=True, null=True)
     name_gov = models.CharField(max_length=80, blank=True, null=True)
-    num_grd = models.CharField(max_length=80, blank=True, null=True)
+    num_grd = models.CharField(max_length=80, blank=True, null=True) #можно ли оптимизировать?
     date_grd = models.DateField(blank=True, null=True)
     kud_number = models.CharField(max_length=30, blank=True, null=True)
     num_glr = models.CharField(max_length=30, blank=True, null=True)

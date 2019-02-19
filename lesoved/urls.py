@@ -22,6 +22,8 @@ from rest_framework import routers
 
 from classification_list import views
 from renter.views import *
+from cutarea.views import *
+
 
 router = routers.DefaultRouter()
 router.register(r'list-forest-activity', views.ForestActivitySet, base_name='list-forest-activity') #localhost:/api/Виды мероприятий по использованию лесов (справочник)
@@ -50,6 +52,21 @@ router.register(r'list-unit-meas', views.UnitMeasSet, base_name='list-unit-meas'
 router.register(r'renter',RentersSet, base_name = 'renter')
 router.register(r'agreement',AgreeSet, base_name = 'agreement')
 router.register(r'addresses',RentAddresSet, base_name = 'addresses')
+#cutareas api
+router.register(r'cutarea-forestry', ForestryKeysSet, base_name='cutarea-forestry') #localhost:/api/Виды мероприятий по использованию лесов (справочник)
+router.register(r'cutarea-distr-forestry', DistrForestKeysSet, base_name='cutarea-distr-forestry')
+router.register(r'cutarea-tract', TractKeysSet, base_name='cutarea-tract')#api геометрии лесосеки
+router.register(r'cutarea-qart', QartalKeysSet, base_name='cutarea-qart')
+router.register(r'cutarea-allotment', AllotmentSet, base_name='cutarea-allotment')
+router.register(r'cutarea-fca', FcaSet, base_name='cutarea-fca')
+router.register(r'cutarea-fca-use', FcaUseSet, base_name='cutarea-fca-use')
+router.register(r'cutarea-fca-photo', FcaPhotoSet, base_name='cutarea-fca-photo')
+router.register(r'cutarea-works', FcaWorksSet, base_name='cutarea-works')
+router.register(r'cutarea-forestsite', ForestSiteSet, base_name='cutarea-forestsite')
+
+
+
+
 urlpatterns = [
     url(r'^api/', include(router.urls)),
     path('admin/', admin.site.urls),

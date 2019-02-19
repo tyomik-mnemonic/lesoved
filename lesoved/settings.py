@@ -95,7 +95,7 @@ WSGI_APPLICATION = 'lesoved.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'lesowed',
         'USER': 'postgres',
         'HOST': '172.17.0.2',
