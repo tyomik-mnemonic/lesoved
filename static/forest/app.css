@@ -27,7 +27,7 @@
 }
 
 .hdr2{
-    background-color: #8EA6B8; 
+    background-color: #1C2E3B; 
     font-family: 'Exo 2', sans-serif;
     font-size: 18px;
     font-weight: 1000;
@@ -44,44 +44,54 @@
 233656 415b76 7b9ba6 cdd6d5 eef4f2
 */
 .toolbars{
-	background-color: #33536B;
+	background-color: #145BA6;
 	
 }
 
 .grbuttons{
-	background-color:#33536B;
+	background-color:#145BA6;
 	font-family: 'Exo 2', sans-serif;
-
 	font-weight: 850;
 	font-size:18px;
 	color:#ffffff;
 	font-style: normal;
 	margin:0;
+	-webkit-clip-path: polygon(20% 0, 100% 0, 80% 100%, 0 100%);
+    clip-path: polygon(20% 0, 100% 0, 80% 100%, 0 100%);
 }
 
 
+
+
 .grbuttons:hover{
-	background-color:#ffffff;
+	background-color:#64D9C7;
 	font-family: 'Exo 2', sans-serif;
 
 	font-weight: 850;
 	font-size:18px;
-	color:#233656; 
+	color:#ffffff; 
 	font-style: normal;
+	-webkit-clip-path: polygon(20% 0, 100% 0, 80% 100%, 0 100%);
+    clip-path: polygon(20% 0, 100% 0, 80% 100%, 0 100%);
+	
 }
 
+
 .grbuttons:active{
-	background-color:#33536B;
+	background-color:#145BA6;
 	font-family: 'Exo 2', sans-serif;
 
 	font-weight: 850;
 	color:#ffffff; 
 	font-size:18px;
 	font-style: normal;
+	-webkit-clip-path: polygon(20% 0, 100% 0, 80% 100%, 0 100%);
+    clip-path: polygon(20% 0, 100% 0, 80% 100%, 0 100%);
+	
 }
 
 .grbuttonsBig{
-	background-color:#33536B;
+	background-color:#145BA6;
 	font-family: 'Exo 2', sans-serif;
 
 	font-weight: 850;
@@ -93,6 +103,7 @@
     font-size:20px;
     width: 7%;
     margin: auto;
+ 
     
 }
 
@@ -109,6 +120,7 @@
     overflow: auto;
     font-size:20px;
     margin: auto;
+    
 }
 
 .grbuttonsBig:active{
@@ -312,3 +324,46 @@ font-weight:bold;
 
 
 
+
+
+
+
+
+
+.justbuttons{
+	background-color:#145BA6;
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 850;
+	font-size:18px;
+	color:#ffffff;
+	font-style: normal;
+	margin:0;
+	
+}
+
+
+
+
+.justbuttons:hover{
+	background-color:#ffffff;
+	font-family: 'Exo 2', sans-serif;
+
+	font-weight: 850;
+	font-size:18px;
+	color:#145BA6; 
+	font-style: normal;
+	
+	
+}
+
+
+.justbuttons:active{
+	background-color:#145BA6;
+	font-family: 'Exo 2', sans-serif;
+
+	font-weight: 850;
+	color:#ffffff; 
+	font-size:18px;
+	font-style: normal;
+	
+}

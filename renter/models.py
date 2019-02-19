@@ -18,19 +18,19 @@ from classification_list.models import*
 class Renters(models.Model):
     id = models.AutoField(primary_key=True)
     org_prav_form = models.ForeignKey(Pravform, models.DO_NOTHING, blank=True, null=True)
-    inn = models.CharField(max_length=12)
+    inn = models.CharField('ИНН',max_length=12)
     account_name = models.CharField(max_length=20)
     acc_pwd = models.CharField(max_length=128, blank=True, null=True)#password нужен единый генератор
-    name = models.CharField(max_length=50, blank=True, null=True)
-    snameplp = models.CharField(max_length=80, blank=True, null=True)
-    fnameplp = models.CharField(max_length=80, blank=True, null=True)
-    patronymicplp = models.CharField(max_length=80, blank=True, null=True)
-    position = models.CharField(max_length=80, blank=True, null=True)
+    name = models.CharField('ФИО',max_length=150, blank=True, null=True)
+    snameplp = models.CharField(max_length=100, blank=True, null=True)
+    fnameplp = models.CharField(max_length=100, blank=True, null=True)
+    patronymicplp = models.CharField(max_length=100, blank=True, null=True)
+    position = models.CharField('должность',max_length=50, blank=True, null=True)
     leg_docum = models.ForeignKey(LegalDocuments, models.DO_NOTHING, blank=True, null=True)
-    ogrn = models.CharField(max_length=13, blank=True, null=True)
-    identity_doc = models.ForeignKey(IdentDoc, models.DO_NOTHING, blank=True, null=True)
-    serial_doc = models.CharField(max_length=8, blank=True, null=True)
-    number_doc = models.CharField(max_length=8, blank=True, null=True)
+    ogrn = models.CharField(max_length=100, blank=True, null=True)
+    identity_doc = models.ForeignKey(IdentDoc, models.DO_NOTHING, blank=True, null=True, help_text = 'документ удостоверяющий личность')
+    serial_doc = models.CharField('серия документа',max_length=50, blank=True, null=True)
+    number_doc = models.CharField('номер документа',max_length=50, blank=True, null=True)
 
     class Meta:
         managed = True
@@ -68,31 +68,11 @@ class Agreement(models.Model):
 
 
 
-'''class Persons(models.Model):
-    id = models.AutoField(primary_key=True)
-    org_prav_form = models.ForeignKey(Pravform, models.DO_NOTHING, blank=True, null=True)
-    inn = models.CharField(max_length=12)
-    account_name = models.CharField(max_length=20)
-    acc_pwd = models.CharField(max_length=128, blank=True, null=True)
-    second_name = models.CharField(max_length=40)
-    first_name = models.CharField(max_length=40)
-    patronymic = models.CharField(max_length=40)
-    identity_doc = models.ForeignKey(IdentDoc, models.DO_NOTHING, blank=True, null=True)
-    serial_doc = models.CharField(max_length=8, blank=True, null=True)
-    serial_doc = models.CharField(max_length=8)
-    number_doc = models.CharField(max_length=8)
-    ogrnip = models.CharField(max_length=15, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'persons' '''#требует пересмотра
 
 
-
-class Addresses(models.Model): #адрес арендатора
-
+class RentAddres(models.Model): #адрес арендатора
     id = models.IntegerField(primary_key=True)
-    id_renter = models.ForeignKey(Renters, models.DO_NOTHING, blank=True, null=True)
+    renters_id = models.ForeignKey(Renters, models.DO_NOTHING, verbose_name='рентер')
     subject = models.ForeignKey(SubjectRf, models.DO_NOTHING, blank=True, null=True)
     city = models.CharField(max_length=50, blank=True, null=True)
     street = models.CharField(max_length=50, blank=True, null=True)
@@ -104,8 +84,7 @@ class Addresses(models.Model): #адрес арендатора
     type = models.TextField(blank=True, null=True)  # This field type is a guess.
 
     class Meta:
-        managed = False
+        managed = True
         verbose_name = 'адрес'
         verbose_name_plural = 'список адресов'
-
 

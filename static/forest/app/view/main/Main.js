@@ -28,6 +28,7 @@ Ext.define('Foresto.view.main.Main', {
     padding: 0,
     id:"bighBox",
     header: {
+    	height: 65,
         cls: 'header-cls',
         title : {
             cls : 'header-title-cls',
@@ -72,26 +73,27 @@ Ext.define('Foresto.view.main.Main', {
             		ui:'action',
             		cls: 'grbuttons',
             		height: 40,
-            		width: 140,
+            		width: 150,
             		margin:0,
             		handler:'cutForms'
             	},{
             		text:'+Договор',
             		ui:'action',
             		cls: 'grbuttons',
-            		//margin:2,
+            		margin:0,
             		height: 40,
-            		width: 140,
+            		width: 145,
             		handler:'agreForms'
             	},{
             		xtype:'spacer'
             	},{
             		text:'Мои проекты',
+            		id:'grbuttons',
             		ui:'action',
             		//margin:2,
             		cls: 'grbuttons',
             		height: 40,
-            		width: 180,
+            		width: 200,
             		handler: function() {
             			
             			Ext.create('Ext.panel.Panel',{
@@ -130,7 +132,7 @@ Ext.define('Foresto.view.main.Main', {
             		cls: 'grbuttons',
             		ui:'action',
             		height: 40,
-            		width: 190,
+            		width: 220,
             		//margin:2,
             		
             		
@@ -300,7 +302,7 @@ Ext.define('Foresto.view.main.Main', {
             items: [{
                 text: 'ВОЙТИ',
                 iconCls: 'x-fa fa-pencil',
-                cls:'grbuttons',
+                cls:'justbuttons',
                 modal: true,
                 hideOnMaskTap: true,
                 scope: this,

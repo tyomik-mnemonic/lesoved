@@ -7,18 +7,18 @@ Ext.define('Foresto.view.forms.Cutarea', {
     xtype: 'foresto-cutarea',
     items: [{
     	xtype:'tabpanel',
-    	cls:'grbuttons',
+    	cls:'justbuttons',
     	tabBar: {
-    		cls:'grbuttons',
+    		cls:'justbuttons',
     		defaults:{
-    			cls:'grbuttons'
+    			cls:'justbuttons'
     		}
     	},
     	id:'tabpanelitisme',
     	layout:'card',
     	items:[{
     		xtype:'panel',
-    		cls:'grbuttons',
+    		cls:'justbuttons',
     		title:'Пространственные данные',
     		items:[{
     	    	xtype: 'textfield',
@@ -39,16 +39,16 @@ Ext.define('Foresto.view.forms.Cutarea', {
     	    	xtype: 'button',
     	        text: 'WKT геометрия',
     	        name: 'geometry',
-    	        cls: 'grbuttons'
+    	        cls: 'justbuttons'
     	    },{
     	    	xtype:'button',
     	    	text:'Добавить фото',
     	    	margin: 10,
-    	    	cls: 'grbuttons'
+    	    	cls: 'justbuttons'
     	    },{
             	xtype:'button',
             	text:'Сохранить',
-            	cls: 'grbuttons',
+            	cls: 'justbuttons',
             	margin: 10,
             	ui:'confirm',
             	handler: function() {
@@ -64,7 +64,7 @@ Ext.define('Foresto.view.forms.Cutarea', {
             }]
     	},{
     		xtype:'panel',
-    		cls:'grbuttons',
+    		cls:'justbuttons',
     		layout: 'vbox',
     		title:'Характеристика',
     		items:[{
@@ -90,7 +90,7 @@ Ext.define('Foresto.view.forms.Cutarea', {
             },{
             	xtype:'button',
             	text:'Сохранить',
-            	cls: 'grbuttons',
+            	cls: 'justbuttons',
             	margin: 10,
             	ui:'confirm',
             	handler: function() {
@@ -106,7 +106,7 @@ Ext.define('Foresto.view.forms.Cutarea', {
             }]
     	},{
     		xtype:'panel',
-    		cls:'grbuttons',
+    		cls:'justbuttons',
     		title:'Планируемое использование',
     		items:[{
     			xtype:'selectfield',
@@ -159,7 +159,7 @@ Ext.define('Foresto.view.forms.Cutarea', {
             },{
             	xtype:'button',
             	text:'Сохранить',
-            	cls: 'grbuttons',
+            	cls: 'justbuttons',
             	margin: 10,
             	ui:'confirm'
             }

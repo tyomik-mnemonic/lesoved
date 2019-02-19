@@ -2,7 +2,7 @@ Ext.define('Foresto.view.forms.LoginRoom', {
     extend: 'Ext.form.Panel',
     title: 'Вход',
     width: 500,
-    height: 250,
+    height: 310,
     id:'login',
     fullscreen: true,
     layout:'vbox',
@@ -43,7 +43,7 @@ Ext.define('Foresto.view.forms.LoginRoom', {
             },{
             	xtype: 'button',
             	text:'Войти',
-            	cls:'grbuttons',
+            	cls:'justbuttons',
             	ui: 'confirm',
             	margin: 4
             	
@@ -52,7 +52,27 @@ Ext.define('Foresto.view.forms.LoginRoom', {
             },{
             	xtype: 'button',
                 text:'Регистрация',
-                cls:'grbuttons',
+                cls:'justbuttons',
+                margin: 4,
+                handler: function() {
+                    if (!this.overlay) {
+                        this.overlay = Ext.Viewport.add({
+                            xtype: 'loginWS',
+                            layout:'fit',
+                            hidden: true
+                            
+                            
+                            
+                        });
+                    }
+
+                    this.overlay.show();
+                }
+            			
+            },{
+            	xtype: 'button',
+                text:'Информация о сервисе',
+                cls:'justbuttons',
                 margin: 4,
                 handler: function() {
                     if (!this.overlay) {
@@ -70,9 +90,6 @@ Ext.define('Foresto.view.forms.LoginRoom', {
                 }
             			
             }
-            	
-            
-            
         ]
 });
 

@@ -21,7 +21,7 @@ from rest_framework import routers
 
 
 from classification_list import views
-
+from renter.views import *
 
 router = routers.DefaultRouter()
 router.register(r'list-forest-activity', views.ForestActivitySet, base_name='list-forest-activity') #localhost:/api/Виды мероприятий по использованию лесов (справочник)
@@ -42,14 +42,14 @@ router.register(r'list-subjectRF', views.SubjectRfSet, base_name='list-subjectRF
 router.register(r'list-type-felling', views.TypeFellingSet, base_name='list-type-felling')
 router.register(r'list-shape-felling', views.ShapeFellingSet, base_name='list-shape-felling')
 router.register(r'list-types-forestry', views.TypesForestrySet, base_name='list-types-forestry')#localhost:/api/forestry-cutarea/
-
 router.register(r'list-vid-doc', views.ViddocSet, base_name='list-vid-doc')
 router.register(r'list-prav-form', views.PravformSet, base_name='list-prav-form')
 router.register(r'list-ident-doc', views.IdentDocSet, base_name='list-ident-doc')
 router.register(r'list-unit-meas', views.UnitMeasSet, base_name='list-unit-meas')
-
-
-
+#renters api
+router.register(r'renter',RentersSet, base_name = 'renter')
+router.register(r'agreement',AgreeSet, base_name = 'agreement')
+router.register(r'addresses',RentAddresSet, base_name = 'addresses')
 urlpatterns = [
     url(r'^api/', include(router.urls)),
     path('admin/', admin.site.urls),

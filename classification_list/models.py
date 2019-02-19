@@ -190,7 +190,7 @@ class Pravform(models.Model):
 class IdentDoc(models.Model):
 
     id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=100, blank=True, null=True)
+    name = models.CharField('документ, удостоверяющий личность',max_length=100, blank=True, null=True)
 
     class Meta:
         managed = True
