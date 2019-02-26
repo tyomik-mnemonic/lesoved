@@ -14,12 +14,12 @@ class RentersAdmin(DynamicRawIDMixin, admin.OSMGeoAdmin):
     'serial_doc','number_doc')
 
 @admin.register(Agreement)
-class RentersAdmin(DynamicRawIDMixin, admin.OSMGeoAdmin):
+class AgreementAdmin(DynamicRawIDMixin, admin.OSMGeoAdmin):
     list_filter = ('act_num',)
     search_fields = ('num', 'date_reg','positive_date','act_num')
     list_display = ('id','renters_id','date','organ','num','date_reg','kadastre','glr',\
     'reas_doc','use_start','use_end','act_num','act_date','project','project_date',\
-    'project_author','positive_date')
+    'project_author','positive_date','viddoc')
 
 @admin.register(RentAddres)
 class RentAddresAdmin(DynamicRawIDMixin, admin.OSMGeoAdmin):

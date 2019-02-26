@@ -6,8 +6,8 @@ from django.contrib.gis.db import models
 class ForestryKeys(models.Model):
 
     id = models.IntegerField(primary_key=True)
-    df_forestry = models.TextField(blank=True, null=True),
-    geom = models.MultiPolygonField(geography=True, null=True, blank=True, verbose_name='геометрия')
+    name = models.TextField(blank=True, null=True), # перенести в админку
+    geom = models.PolygonField(geography=True, null=True, blank=True, verbose_name='геометрия')
 
     class Meta:
         managed = True
@@ -18,7 +18,8 @@ class DistrForestKeys(models.Model):
 
     id = models.IntegerField(primary_key=True)
     df_names = models.TextField(blank=True, null=True)
-    geom = models.MultiPolygonField(geography=True, null=True, blank=True, verbose_name='геометрия')
+    geom = models.PolygonField(geography=True, null=True, blank=True, verbose_name='геометрия')
+    forestry_id = models.ForeignKey(ForestryKeys, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = True
@@ -26,28 +27,12 @@ class DistrForestKeys(models.Model):
         verbose_name_plural =  'УЛВы'
 
 
-class TractKeys(models.Model):
-
-    id = models.IntegerField(primary_key=True)
-    tract_name = models.TextField(blank=True, null=True)
-    forestry = models.ForeignKey(ForestryKeys, models.DO_NOTHING, blank=True, null=True) #хорошо бы оптимизировать: Всегда ли есть УЧВ?
-    district_forestry = models.ForeignKey(DistrForestKeys, models.DO_NOTHING, blank=True, null=True)
-    geom = models.MultiPolygonField(geography=True, null=True, blank=True, verbose_name='геометрия')
-
-
-    class Meta:
-        managed = True
-        verbose_name = 'урочище'
-        verbose_name_plural =  'урочища'
-
 
 class QartalKeys(models.Model):
 
     id = models.IntegerField(primary_key=True)
-    forestry_id = models.ForeignKey(ForestryKeys, models.DO_NOTHING, blank=True, null=True)
     district_forestry_id = models.ForeignKey(DistrForestKeys, models.DO_NOTHING, blank=True, null=True)
-    tract_id =  models.ForeignKey(TractKeys, models.DO_NOTHING, blank=True, null=True)
-    geom = models.MultiPolygonField(geography=True, null=True, blank=True, verbose_name='геометрия')
+    geom = models.PolygonField(geography=True, null=True, blank=True, verbose_name='геометрия')
 
 
     class Meta:
@@ -60,10 +45,7 @@ class QartalKeys(models.Model):
 
 class Allotment(models.Model):  #выдел
     id = models.BigIntegerField(primary_key=True)
-    geom = models.MultiPolygonField(geography=True, null=True, blank=True, verbose_name='геометрия')
-    forestry_id = models.ForeignKey(ForestryKeys, models.DO_NOTHING, blank=True, null=True)
-    district_forestry_id = models.ForeignKey(DistrForestKeys, models.DO_NOTHING, blank=True, null=True)
-    tract_id =  models.ForeignKey(TractKeys, models.DO_NOTHING, blank=True, null=True)
+    geom = models.PolygonField(geography=True, null=True, blank=True, verbose_name='геометрия')#хорошо бы оптимизировать УЛВ ключ
     num_kvr = models.ForeignKey(QartalKeys, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
@@ -75,25 +57,16 @@ class Allotment(models.Model):  #выдел
 class Fca(models.Model):  #составная лесосека
     id = models.BigAutoField(primary_key=True)
     subject = models.ForeignKey(SubjectRf, models.DO_NOTHING, blank=True, null=True)
-    renter_name = models.ForeignKey(Renters, models.DO_NOTHING, blank=True, null=True)
-#    num_doc = models.CharField(max_length=50, blank=True, null=True)
+#renter_name = models.ForeignKey(Renters, models.DO_NOTHING, blank=True, null=True) #хорошо бы оптимизировать: рентер через договор
     num_of_agree = models.ForeignKey(Agreement, models.DO_NOTHING, blank=True, null=True)
-#    forestry = models.ForeignKey(ForestryKeys, models.DO_NOTHING, blank=True, null=True)
-#   district_forestry = models.ForeignKey(DistrForestKeys, models.DO_NOTHING, blank=True, null=True)
-#   uroch = models.ForeignKey(TractKeys, models.DO_NOTHING, blank=True, null=True)
-#  num_kv = models.TextField(blank=True, null=True)
+    uroch = models.TextField(blank=True, null=True)
     num_allot = models.ForeignKey(Allotment, models.DO_NOTHING, blank=True, null=True)
-#   num_fca = models.CharField(max_length=50, blank=True, null=True)
+    num_fca = models.CharField(max_length=50, blank=True, null=True) #номер лесосеки "официальный"
     ar_fca = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    fell_form = models.TextField(blank=True, null=True)  # This field type is a guess.
-    fell_type = models.IntegerField(blank=True, null=True)
-    main_type = models.IntegerField(blank=True, null=True)
-    sortiment = models.ForeignKey(ForestSort, on_delete=models.DO_NOTHING, verbose_name='cортиментный состав')
-    vol_zag = models.FloatField(blank=True, null=True)
-    biz_type = models.CharField(max_length=50, blank=True, null=True)
+#    vol_zag = models.FloatField(blank=True, null=True)
     expl_ar = models.FloatField(blank=True, null=True)
-    cel_nazn = models.IntegerField(blank=True, null=True)
-    cat_zas = models.IntegerField(blank=True, null=True)
+    cel_nazn = models.ForeignKey(ForestPurpose, on_delete=models.DO_NOTHING, verbose_name='целевое назначение') #классификатор
+    cat_zas = models.ForeignKey(ForestProtection, on_delete=models.DO_NOTHING, verbose_name='категория лесозащиты') #классификатор
     geom = models.TextField(blank=True, null=True)  # This field type is a guess.
     video_cat = models.TextField(blank=True, null=True)
 
@@ -106,14 +79,15 @@ class Fca(models.Model):  #составная лесосека
 
 class FcaUse(models.Model): #планируемое использование
     id_fca = models.ForeignKey(Fca, on_delete=models.DO_NOTHING)
-    fell_form = models.ForeignKey(ShapeFelling, on_delete=models.DO_NOTHING, verbose_name='форма рубки')
-    fell_type = models.ForeignKey(TypeFelling, on_delete=models.DO_NOTHING, verbose_name='вид рубки')
+    fell_form = models.ForeignKey(ShapeFelling, on_delete=models.DO_NOTHING, verbose_name='вид рубки')
+    fell_type = models.ForeignKey(TypeFelling, on_delete=models.DO_NOTHING, verbose_name='форма рубки')
     main_type = models.ForeignKey(TypesForestry, on_delete=models.DO_NOTHING, verbose_name='тип хозяйства') #возможна ли оптимизация?
-    kind = models.ForeignKey(ForestKind, on_delete=models.DO_NOTHING, verbose_name='породный состав')
+    kind = models.ForeignKey(ForestKind, on_delete=models.DO_NOTHING, verbose_name='породный состав'),
+    sortiment = models.ForeignKey(ForestSort, on_delete=models.DO_NOTHING, verbose_name='cортиментный состав')
     ed_izm = models.ForeignKey(UnitMeas, on_delete=models.DO_NOTHING, verbose_name='единица измерения')
-    vol_drew = models.FloatField(blank=True, null=True)
+    vol_drew = models.FloatField(blank=True, null=True) #древесные ресурсы
     fca_res = models.SmallIntegerField(blank=True, null=True)
-    vol_res = models.FloatField(blank=True, null=True)
+    vol_res = models.FloatField(blank=True, null=True)#недревесные ресурсы
 
 class Meta:
         verbose_name = 'планируемое использование'
@@ -122,15 +96,15 @@ class Meta:
 
 
 
-class FcaPhoto(models.Model):
+class FcaPhoto(models.Model): #на потому, на перспективу
     id = models.BigIntegerField(primary_key=True)
     id_fca = models.ForeignKey(Fca, models.DO_NOTHING, blank=True, null=True)
     point_no = models.IntegerField(blank=True, null=True)
-    coords = models.CharField(max_length=50, blank=True, null=True)
+#   coords = models.CharField(max_length=50, blank=True, null=True)
     photo_no = models.IntegerField(blank=True, null=True)
     ext = models.CharField(max_length=10, blank=True, null=True)
     ref = models.TextField(blank=True, null=True)
-    image = models.BinaryField(blank=True, null=True)
+    image = models.BinaryField(blank=True, null=True) #Поле с изображением
 
     class Meta:
         verbose_name = 'фото'
@@ -141,81 +115,27 @@ class FcaPhoto(models.Model):
 class FcaWorks(models.Model):
     id = models.BigIntegerField(primary_key=True)
     id_fca = models.ForeignKey(Fca, models.DO_NOTHING, blank=True, null=True)
-    wkod = models.SmallIntegerField(blank=True, null=True)
-    #main_type = models.SmallIntegerField(blank=True, null=True)
-    #fell_form = models.ForeignKey(ShapeFelling, on_delete=models.DO_NOTHING, verbose_name='форма рубки')
-    #fell_type = models.ForeignKey(TypeFelling, on_delete=models.DO_NOTHING, verbose_name='вид рубки')
-    #kind = models.ForeignKey(ForestKind, on_delete=models.DO_NOTHING, verbose_name='вид рубки')
+    wkod = models.SmallIntegerField(blank=True, null=True) #вид работ на лесосеке
+    main_type = models.SmallIntegerField(blank=True, null=True)
+    fell_form = models.ForeignKey(ShapeFelling, on_delete=models.DO_NOTHING, verbose_name='форма рубки')
+    fell_type = models.ForeignKey(TypeFelling, on_delete=models.DO_NOTHING, verbose_name='вид рубки')
+    kind = models.ForeignKey(ForestKind, on_delete=models.DO_NOTHING, verbose_name='вид рубки')
     sortiment = models.ForeignKey(ForestSort, on_delete=models.DO_NOTHING, verbose_name='cортиментный состав')
     vol_drew = models.FloatField(blank=True, null=True)
     use_type = models.ForeignKey(ForestUse, on_delete=models.DO_NOTHING, verbose_name='вид рубки')
     fca_res = models.SmallIntegerField(blank=True, null=True)
     ed_izm = models.ForeignKey(UnitMeas, on_delete=models.DO_NOTHING, verbose_name='единица измерения')
     vol_les = models.FloatField(blank=True, null=True)
-    act_name = models.SmallIntegerField(blank=True, null=True)
-    obj_type = models.SmallIntegerField(blank=True, null=True)
+    act_name = models.ForeignKey(ForestActivity, on_delete=models.DO_NOTHING, verbose_name='мероприятия') #мероприятия добавить вн ключ
+    obj_type = models.ForeignKey(ForestObjtype, on_delete=models.DO_NOTHING, verbose_name='объекты')
     use_area = models.FloatField(blank=True, null=True)
-    indicator = models.SmallIntegerField(blank=True, null=True)
+    indicator = models.ForeignKey(Forestation , on_delete=models.DO_NOTHING, verbose_name='лесовосстановление')
     comment = models.TextField(blank=True, null=True)
-    date_report = models.DateField(blank=True, null=True)
-    #activity_use= models.ForeignKey(ForestActivity, on_delete=models.DO_NOTHING, verbose_name='мероприятия по использованию лесов')
+    date_report = models.DateField(blank=True, null=True)#дата проведенных работ
 
     class Meta:
         verbose_name = 'фактические работы'
+        verbose_name_plural = 'фактические работы'
         managed = True
 
 
-class ForestSite(models.Model): #Таблица содержит данные о правоустанавливающих документах на лесной участок
-    id = models.AutoField(primary_key=True)
-    vid_doc = models.ForeignKey(Viddoc, models.DO_NOTHING, blank=True, null=True)
-    num_doc = models.CharField(max_length=80, blank=True, null=True)
-    date_doc = models.DateField(blank=True, null=True)
-    id_rr = models.IntegerField(blank=True, null=True)
-    name_gov = models.CharField(max_length=80, blank=True, null=True)
-    num_grd = models.CharField(max_length=80, blank=True, null=True) #можно ли оптимизировать?
-    date_grd = models.DateField(blank=True, null=True)
-    kud_number = models.CharField(max_length=30, blank=True, null=True)
-    num_glr = models.CharField(max_length=30, blank=True, null=True)
-    osn_pred_uch = models.ForeignKey(Osnovanie, models.DO_NOTHING, blank=True, null=True)
-    date_start = models.DateField(blank=True, null=True)
-    date_stop = models.DateField(blank=True, null=True)
-    num_akt = models.CharField(max_length=15, blank=True, null=True)
-    date_akt = models.DateField(blank=True, null=True)
-    projects = models.IntegerField(blank=True, null=True)
-    num_kv = models.CharField(max_length=10, blank=True, null=True)
-    district_forestry = models.CharField(max_length=50, blank=True, null=True)
-    forestry = models.CharField(max_length=80, blank=True, null=True)
-    radio = models.SmallIntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = True
-        verbose_name = 'договоры 2' #??? уточнить необходимость
-
-
-
-'''
-class FcaOld(models.Model):   #-//-старая версия
-    id = models.BigIntegerField(primary_key=True)
-    num_fca = models.CharField(max_length=50, blank=True, null=True)
-    num_doc = models.CharField(max_length=50, blank=True, null=True)
-    uroch = models.CharField(max_length=50, blank=True, null=True)
-    main_type = models.IntegerField(blank=True, null=True)
-    fell_form = models.TextField(blank=True, null=True)  # This field type is a guess.
-    fell_type = models.IntegerField(blank=True, null=True)
-    geom = models.TextField(blank=True, null=True)  # This field type is a guess.
-    fid = models.BigIntegerField(blank=True, null=True)
-    org_name = models.CharField(max_length=50, blank=True, null=True)
-    forestry = models.CharField(max_length=80, blank=True, null=True)
-    district_forestry = models.CharField(max_length=50, blank=True, null=True)
-    num_kv = models.TextField(blank=True, null=True)
-    num_allot = models.TextField(blank=True, null=True)
-    biz_type = models.CharField(max_length=20, blank=True, null=True)
-    ar_fca = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-    cel_nazn = models.IntegerField(blank=True, null=True)
-    cat_zas = models.IntegerField(blank=True, null=True)
-    expl_ar = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'fca_old'
-'''

@@ -1,12 +1,12 @@
-Ext.define('Foresto.store.CutForestryType',{
+Ext.define('Foresto.store.FellType',{
 	extend:'Ext.data.Store',
-	alias: "cuttstoreFT",
-	storeID:'cuttstoreFT',
+	alias: "felltype",
+	storeID:'felltype',
 	fields:['id','name'],
-	xtype:'forestrytypestore',
+	xtype:'felltype',
 	proxy: {
 		type:'ajax',
-		url:'/api/forestry-type/',
+		url:'/api/list-type-felling/',
 		reader:{
 			type:'json',
 			rootProperty: 'results'

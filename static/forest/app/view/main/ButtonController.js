@@ -9,32 +9,24 @@ Ext.define('Foresto.view.main.ButtonController', {
 	           'Foresto.view.forms.Cutarea',
 	           'Foresto.view.forms.RenterData',
 	           'Foresto.view.forms.Agreement',
-	           'Foresto.view.forms.Kvartal',
 	           'Foresto.view.forms.RenterDataCompany',
 	           'Foresto.view.map.Mapworkspace',
 	           ],
-	
-
-	
-	
 	views: ['Foresto.view.main.Main'],
-	
-	
-	
-	
 	
 	cutForms: function() {
     	var items32120 = [{
             xtype:'foresto-cutarea',
             scrollable: true,
             scope: this,
+            height: 400,
+            modal: true,
             
-            renderTo: 'mainPart',
             
             handler: function() {
           	  this.action32120.hide();
             }
-      	},{
+      	},/*{
               text: 'Сохранить',
               cls:'grbuttonsBig',
               ui: 'confirm',
@@ -49,7 +41,7 @@ Ext.define('Foresto.view.main.ButtonController', {
                 		params: dataSet32120
                 	})
                 }
-      	},{
+      	},*/{
       		  text: 'Отменить',
       		  cls:'grbuttonsBig',
               ui: 'Decline',
@@ -73,8 +65,8 @@ Ext.define('Foresto.view.main.ButtonController', {
           xtype:'foresto-agreement',
           scrollable: true,
           scope: this,
+          height: 400,
           
-          renderTo: 'mainPart',
           
           handler: function() {
         	  this.action2.hide();
@@ -257,7 +249,7 @@ Ext.define('Foresto.view.main.ButtonController', {
     	
     quartForms: function() {
     	var items4 = [{
-            xtype:'foresto-kvartal',
+          //  xtype:'foresto-kvartal',
             scrollable: true,
             scope: this,
             
@@ -346,14 +338,6 @@ Ext.define('Foresto.view.main.ButtonController', {
             this.actions5.show();
         }
       
-      
-      
-    	
-    	
-    
-	
-	
-
 });
 
 

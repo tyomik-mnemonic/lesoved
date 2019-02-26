@@ -76,23 +76,11 @@ class OsnovanieSerializer(serializers.ModelSerializer):
         model = Osnovanie
         fields = ('id', 'name')
 
-'''class PwdTestSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = PwdTest
-        fields = ('id', 'name')
-'''
-class QuartersSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Quarters
-        fields = ('id', 'geom', 'forest_code','name', 'quarter')
-
 class SubjectRfSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SubjectRf
-        fields = ('id', 'geom', 'forest_code','name','quarter')
+        fields = ('id', 'name', 'kod_okato')
 
 class TypeFellingSerializer(serializers.ModelSerializer):
 

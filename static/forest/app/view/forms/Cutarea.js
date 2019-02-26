@@ -1,170 +1,316 @@
 Ext.define('Foresto.view.forms.Cutarea', {
-    extend: 'Ext.panel.Panel',
+    extend: 'Ext.tab.Panel',
     title: 'Лесосека',
-    margin: 5,
-    height: 600,
+    id: 'cutareaform',
     scrollable: true,
     xtype: 'foresto-cutarea',
-    items: [{
-    	xtype:'tabpanel',
+    cls:'hdr2',
+    tabBar: {
+		cls:'hdr2',
+		defaults:{
+			cls:'hdr2'
+		}
+    },
+  
+    layout:'card',
+    items:[{
+    	xtype:'formpanel',
+    	id:'cutareap1',
     	cls:'justbuttons',
-    	tabBar: {
-    		cls:'justbuttons',
-    		defaults:{
-    			cls:'justbuttons'
-    		}
-    	},
-    	id:'tabpanelitisme',
-    	layout:'card',
+    	title:'Лесосека',
     	items:[{
-    		xtype:'panel',
-    		cls:'justbuttons',
-    		title:'Пространственные данные',
-    		items:[{
-    	    	xtype: 'textfield',
-    	        label: 'Номер лесосеки',
-    	        name: 'name'
+    	    	xtype: 'selectfield',
+    	        label: 'субъект РФ',
+    	        name: 'subject',
+    	        margin: '10 0 0 0',
+    	        store: Ext.create('Foresto.store.Subject'),
+    	        valueField: 'id',
+                displayField:'name'
+    	        
     	    },{
-    	    	xtype: 'textfield',
-    	        label: 'Номер выдела',
-    	        name: 'allotment'
+    	    	xtype: 'selectfield',
+    	        label: 'Номер договора',
+    	        name: 'agreement',
+    	        store: Ext.create('Foresto.store.AgreeListView'),
+    	        valueField: 'id',
+                displayField:'num'
+    	      //all is ok
     	    },{
-        		xtype:'selectfield',
-        		label: 'договор',
-        		valueField: 'id',
-                displayField:'project_author',
+        		xtype:'textfield',
+        		label: 'урочище',
+        		name: 'tract',
         		
-        		store: Ext.create('Foresto.store.AllContracts')
+        		
         	},{
-    	    	xtype: 'button',
-    	        text: 'WKT геометрия',
-    	        name: 'geometry',
-    	        cls: 'justbuttons'
+    	    	xtype: 'textfield',
+    	        label: 'док. номер лесосеки',
+    	        name: 'subject'
+    	        
+    	    },{
+    	    	xtype: 'textfield',
+    	        label: 'площадь лесосеки', //должна собирать с геометрии?
+    	        name: 'totalarea',
+    	        
+    	    },{
+    	    	xtype: 'textfield',
+    	        label: 'эксплуатационная площадь', 
+    	        name: 'exarea',
+    	        
+    	    },{
+    	    	xtype: 'selectfield',
+    	        label: 'Целевое назначение',
+    	        name: 'task',
+    	        store: Ext.create('Foresto.store.Purpose'),
+    	        valueField: 'id',
+                displayField:'name'
+    	    },{
+    	    	xtype: 'selectfield',
+    	        label: 'Категория лесозащиты',
+    	        name: 'ptotection',
+    	        store: Ext.create('Foresto.store.ProtectType'),
+    	        valueField: 'id',
+                displayField:'name'
+    	        
+    	    },{
+    	    	xtype: 'textfield',
+    	        label: 'Границы лесосеки',
+    	        name: 'geom'
+    	     
+    	    },{
+    	    	xtype: 'textfield',
+    	        label: 'материалы',
+    	        name: 'video'
     	    },{
     	    	xtype:'button',
-    	    	text:'Добавить фото',
-    	    	margin: 10,
-    	    	cls: 'justbuttons'
-    	    },{
-            	xtype:'button',
-            	text:'Сохранить',
-            	cls: 'justbuttons',
-            	margin: 10,
-            	ui:'confirm',
-            	handler: function() {
-            		var dataupNew = this.up().items.items[0];
-              		var dataSetNew = dataupNew.getValues();
+    	    	centured:true,
+    	    	margin: '20 0 0 0',
+    	    	padding: 5,
+    	    	width: 180,
+    	    	cls: 'buttonsforsave',
+    	    	text:'сохранить',
+    	    
+            	handler: function(me) {
+            		var dataupNew = me.up('cutareap1').down('cutareap1').getValues();;//.items.items[0];
+              		//var dataSetNew = dataupNew.getValues('cutareap1');
                 	
                 	Ext.Ajax.request({
-                		url:'/api/forestry-cutarea/',
+                		url:'/api/cutarea-fca/',
                 		method: 'POST',
-                		params: dataSetNew
+                		params: dataupNew
                 	})
                 }
             }]
     	},{
-    		xtype:'panel',
-    		cls:'justbuttons',
-    		layout: 'vbox',
-    		title:'Характеристика',
-    		items:[{
-    			xtype:'selectfield',
-    			label:'Номер лесосеки'
-    		},{
-        		xtype:'textfield',
-        		label: 'урочище'
-        	},{
-            	xtype:'selectfield',
-            	label: 'Целевое назначение',
-            	name:'targetUsing'
-            },{
-            	xtype:'textfield',
-            	label:'Общая площадь, га'
-            },{
-            	xtype:'textfield',
-            	label:'Экспл. площадь, га'
-            },{
-            	xtype:'selectfield',
-            	label:'Кат. защитн. леса',
-            	
-            },{
-            	xtype:'button',
-            	text:'Сохранить',
-            	cls: 'justbuttons',
-            	margin: 10,
-            	ui:'confirm',
-            	handler: function() {
-            		var charform = this.up('panel');
-              		var dataSetNew1 = charform.getValues();
-                	
-                	Ext.Ajax.request({
-                		url:'/api/characteristic/',
-                		method: 'POST',
-                		params: dataSetNew1
-                	})
-                }
-            }]
-    	},{
-    		xtype:'panel',
-    		cls:'justbuttons',
-    		title:'Планируемое использование',
-    		items:[{
-    			xtype:'selectfield',
-    			label:'Номер лесосеки'
-    		},{ 
-    			xtype:'selectfield',
-                label: 'Форма рубки',
-                name: 'cutareaShape',
-                valueField: 'id',
-                displayField:'name',
-                store: Ext.create('Foresto.store.CutForm')
-            },{ 
-            	xtype:'selectfield',
-                label: 'Вид рубки',
-                name: 'cutareaType',
-                valueField: 'id',
-                dispayField:'name',
-                store: Ext.create('Foresto.store.CutType')
-                
-            },{ 
+        	xtype:'panel',
+        	cls:'justbuttons',
+        	layout: 'vbox',
+
+            scrollable: true,
+        	title:'Планируемое использование',
+        	items:[{
         		xtype:'selectfield',
-                label: 'Тип хозяйства',
-                name: 'type',
-                valueField: 'id',
-                displayField:'name',
-                store: Ext.create('Foresto.store.CutForestryType')
-                
-            },{	
-            	xtype: 'selectfield',
-            	label: 'Единица измерения',
-                name: 'unit',
-                valueField: 'id',
-                displayField:'name',
-                store: Ext.create('Foresto.store.CutUnit')
-            },{	
-            	xtype: 'selectfield',
-                label: 'Породный состав',
-                name:'composstore',
-                valueField: 'id',
-                dispayField:'name',
-                store: Ext.create('Foresto.store.SpeciesCompositiom')
-            },{	
-            	xtype: 'selectfield',
-                label: 'Сортиментный состав',
-                ItemID: 'sorsosfield',
-                name: 'assortment',
-                valueField: 'id',
-                displayField: 'name',
-                store: Ext.create('Foresto.store.Assort') 
+        		label:'Номер лесосеки',
+        		margin: '10 0 0 0',
+        	    store: Ext.create('Foresto.store.NumCut'),
+    	        valueField: 'id',
+                displayField:'num_fca'
+        	},{
+        		xtype:'selectfield',
+                label: 'форма рубки',
+                name:'targetUsing',
+                store: Ext.create('Foresto.store.FellForm'),
+    	        valueField: 'id',
+                displayField:'name'
+            },{
+                xtype:'selectfield',
+                label: 'вид рубки',
+                name:'targetUsing',
+                store: Ext.create('Foresto.store.FellType'),
+    	        valueField: 'id',
+                displayField:'name'
+            },{
+                xtype:'selectfield',
+                label: 'тип хозяйства',
+                name:'targetUsing',
+                store: Ext.create('Foresto.store.TypeOfFarm'),
+    	        valueField: 'id',
+                displayField:'name'
+            },{
+                xtype:'selectfield',
+                label: 'породный состав',
+                name:'targetUsing',
+                store: Ext.create('Foresto.store.Kind'),
+    	        valueField: 'id',
+                displayField:'name'
+            },{
+                xtype:'selectfield',
+                label: 'сортиментный состав',
+                name:'targetUsing',
+                store: Ext.create('Foresto.store.Assort'),
+    	        valueField: 'id',
+                displayField:'name'
+            },{
+                xtype:'selectfield',
+                label: 'единица измерения',
+                name:'targetUsing',
+                store: Ext.create('Foresto.store.CutUnit'),
+    	        valueField: 'id',
+                displayField:'name'
+            },{
+                xtype:'textfield',
+                label:'объем древ.'
+            },{
+            	xtype:'selectfield',
+                label:'недревесный ресурс',
+            },{
+                xtype:'selectfield',
+                label:'объем недрев. рес.',
+                	
             },{
             	xtype:'button',
-            	text:'Сохранить',
-            	cls: 'justbuttons',
-            	margin: 10,
-            	ui:'confirm'
-            }
-            	
-            ]
-    	}]
-    }]
+            	centured:true,
+            	margin: '20 0 0 0',
+            	padding: 5,
+            	width: 180,
+            	cls: 'buttonsforsave',
+            	text:'сохранить',
+            
+                handler: function() {
+                	var charform = this.up('panel');
+                  	var dataSetNew1 = charform.getValues();
+                    	
+                    Ext.Ajax.request({
+                    	url:'/api/characteristic/',
+                    	method: 'POST',
+                    	params: dataSetNew1
+                    })
+                }
+           }]
+    	},{
+        	xtype:'panel',
+        	cls:'justbuttons',
+
+            scrollable: true,
+        	title:'Фактическое использование',
+        	items:[{
+        		xtype:'selectfield',
+        		label:'Номер лесосеки',
+        		margin: '10 0 0 0',
+        	    store: Ext.create('Foresto.store.NumCut'),
+    	        valueField: 'id',
+                displayField:'num_fca'
+        	},{
+        		xtype:'textfield',
+                label: 'вид работ',
+                name:'targetUsing'
+            },{
+                xtype:'selectfield',
+                label: 'тип хозяйства',
+                name:'targetUsing',
+                store: Ext.create('Foresto.store.TypeOfFarm'),
+    	        valueField: 'id',
+                displayField:'name'
+            },{
+        		xtype:'selectfield',
+                label: 'вид рубки',
+                name:'targetUsing',
+                store: Ext.create('Foresto.store.FellForm'),
+    	        valueField: 'id',
+                displayField:'name'
+            },{
+                xtype:'selectfield',
+                label: 'форма рубки',
+                name:'targetUsing',
+                store: Ext.create('Foresto.store.FellType'),
+    	        valueField: 'id',
+                displayField:'name'
+            },{
+                xtype:'selectfield',
+                label: 'породный состав',
+                name:'targetUsing',
+                store: Ext.create('Foresto.store.Kind'),
+    	        valueField: 'id',
+                displayField:'name'
+            },{
+                xtype:'selectfield',
+                label: 'сортиментный состав',
+                name:'targetUsing',
+                store: Ext.create('Foresto.store.Assort'),
+    	        valueField: 'id',
+                displayField:'name'
+            },{
+                xtype:'textfield',
+                label: 'объем древесины',
+                name:'targetUsing'
+              
+            },{
+            	 xtype:'selectfield',
+                 label: 'Вид использования', //че это?
+                 name:'viewofuse',
+                 store: Ext.create('Foresto.store.Assort'),
+     	        valueField: 'id',
+                 displayField:'name'
+            },{
+            	xtype:'textfield',
+                label:'недревесный ресурс',
+            },{
+            	xtype:'selectfield',
+                label: 'единица измерения',
+                name:'targetUsing',
+                store: Ext.create('Foresto.store.CutUnit'),
+    	        valueField: 'id',
+                displayField:'name'
+            },{
+                xtype:'textfield',
+                label: 'объем недревесных',
+                name:'notwood'
+                
+            },{
+                xtype:'selectfield',
+                label: 'мероприятия',
+                name:'actions',
+              //  store: Ext.create('Foresto.store.Assort'),
+    	        valueField: 'id',
+                displayField:'name'
+            },{
+                xtype:'selectfield',
+                label: 'объект',
+                name:'actions',
+              //  store: Ext.create('Foresto.store.Assort'),
+    	        valueField: 'id',
+                displayField:'name'
+            },{
+                xtype:'textfield',
+                label: 'используемая площадь',
+                name:'area'
+              
+            },{
+            	xtype:'selectfield',
+                label: 'лесовосстановление',
+                name:'actions',
+              //  store: Ext.create('Foresto.store.Assort'),
+    	        valueField: 'id',
+                displayField:'name'
+              
+            },{
+                xtype:'textfield',
+                label: 'комментарий',
+                name:'area'
+              
+            },{
+                xtype:'datepickerfield',
+                label: 'комментарий',
+                name:'area'
+              
+            },{
+                xtype:'button',
+            	centured:true,
+            	margin: '20 0 0 0',
+            	padding: 5,
+            	width: 180,
+            	cls: 'buttonsforsave',
+            	text:'добавить'
+           }]
+        }]
+    
 });

@@ -1,0 +1,72 @@
+%!Adobe-FontList 1.16
+%Locale:0x419
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:ElektraLightPro
+FamilyName:Elektra Light Pro
+StyleName:Regular
+MenuName:Elektra Light Pro
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Elektra Light Pro
+WritingScript:Roman
+OutlineFileName:\Elektra Light Pro.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:67212
+FileModTime:1416421462
+NameArray:0,Mac,4,Elektra Light Pro
+NameArray:0,Win,1,Elektra Light Pro
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:ElektraLightPro-Bold
+FamilyName:Elektra Light Pro
+StyleName:Bold
+MenuName:Elektra Light Pro
+StyleBits:2
+WeightClass:700
+WidthClass:5
+AngleClass:0
+FullName:Elektra Light Pro Bold
+WritingScript:Roman
+OutlineFileName:\elektra-light-pro-bold.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:59096
+FileModTime:1416421462
+NameArray:0,Mac,4,Elektra Light Pro Bold
+NameArray:0,Win,1,Elektra Light Pro
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:ElektraTextPro
+FamilyName:Elektra Text Pro
+StyleName:Regular
+MenuName:Elektra Text Pro
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Elektra Text Pro
+WritingScript:Roman
+OutlineFileName:\ElektraText.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:68660
+FileModTime:1435931173
+NameArray:0,Mac,4,Elektra Text Pro
+NameArray:0,Win,1,Elektra Text Pro
+%EndFont
+

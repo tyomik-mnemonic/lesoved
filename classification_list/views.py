@@ -64,16 +64,6 @@ class OsnovanieSet(viewsets.ModelViewSet):
     queryset = Osnovanie.objects.all()
     serializer_class = OsnovanieSerializer
     permission_classes = (permissions.AllowAny,)
-'''
-class PwdTestSet(viewsets.ModelViewSet):
-    queryset = PwdTest.objects.all()
-    serializer_class = PwdTestSerializer
-    permission_classes = (permissions.AllowAny,)
-'''
-class QuartersSet(viewsets.ModelViewSet):
-    queryset = Quarters.objects.all()
-    serializer_class = QuartersSerializer
-    permission_classes = (permissions.AllowAny,)
 
 class SubjectRfSet(viewsets.ModelViewSet):
     queryset = SubjectRf.objects.all()

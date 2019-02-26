@@ -6,64 +6,50 @@ from .models import *
 class ForestryKeysSerializer(serializers.ModelSerializer):
     class Meta:
         model = ForestryKeys
-        fields = ('id','df_forestry','geom')
+        fields = ('id','name','geom')
 
 class DistrForestKeysSerializer(serializers.ModelSerializer):
     class Meta:
         model = DistrForestKeys
-        fields = ('id','df_names','geom')
+        fields = ('id','df_names','geom', 'forestry_id')
 
-
-
-class TractKeysSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TractKeys
-        fields = ('id','tract_name','forestry','district_forestry','geom')
 
 class QartalKeysSerializer(serializers.ModelSerializer):
     class Meta:
         model = QartalKeys
-        fields = ('id','forestry_id','district_forestry_id','tract_id','geom')
+        fields = ('id','district_forestry_id','geom')
 
 class AllotmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Allotment
-        fields = ('id','geom','forestry_id','district_forestry_id','tract_id','num_kvr')
+        fields = ('id','geom','num_kvr')
 
 class FcaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fca
-        fields = ('id','subject','renter_name','num_of_agree','num_allot','ar_fca',\
-        'fell_form','fell_type','main_type','sortiment',\
-        'vol_zag','biz_type','expl_ar','cel_nazn','cat_zas','geom','video_cat')
+        fields = ('id','subject','num_of_agree','uroch','num_allot','num_fca','ar_fca',\
+       'expl_ar','cel_nazn','cat_zas','geom','video_cat')
 
 
 class FcaUseSerializer(serializers.ModelSerializer):
     class Meta:
         model = FcaUse
-        fields = ('id_fca','fell_form','fell_type','main_type','kind','ed_izm','vol_drew',\
+        fields = ('id_fca','fell_form','fell_type','main_type','kind','sortiment','ed_izm','vol_drew',\
         'fca_res','vol_res')
 
 
 class FcaPhotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = FcaPhoto
-        fields = ('id','id_fca','point_no','coords','photo_no','ext','ref','image')
+        fields = ('id','id_fca','point_no','photo_no','ext','ref','image')
+
+
 
 class FcaWorksSerializer(serializers.ModelSerializer):
     class Meta:
         model = FcaWorks
-        fields = ('id','id_fca','wkod','sortiment','vol_drew','use_type',\
-        'fca_res','ed_izm','vol_les','act_name',\
+        fields = ('id','id_fca','wkod', 'main_type','fell_form','fell_type','kind',\
+        'sortiment','vol_drew','use_type','fca_res','ed_izm','vol_les','act_name',\
         'obj_type','use_area','indicator','comment','date_report')
-
-
-
-class ForestSiteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ForestSite
-        fields = ('id','vid_doc','num_doc','date_doc','id_rr','name_gov',\
-        'num_grd','osn_pred_uch','date_start','date_stop',\
-        'num_akt','date_akt','projects','num_kv','district_forestry','forestry','radio')
 
 

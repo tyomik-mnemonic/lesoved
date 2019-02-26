@@ -38,8 +38,6 @@ router.register(r'list-forest-works', views.ForestWorksSet, base_name='list-fore
 router.register(r'list-forest-ation', views.ForestationSet, base_name='list-forest-ation')
 router.register(r'list-legal-documents', views.LegalDocumentsSet, base_name='list-legal-documents')
 router.register(r'list-osnovanie', views.OsnovanieSet, base_name='list-osnovanie')
-#router.register(r'PwdTestSet', views.PwdTestSet, base_name='PwdTestSet')
-router.register(r'list-quarter', views.QuartersSet, base_name='list-quarter')
 router.register(r'list-subjectRF', views.SubjectRfSet, base_name='list-subjectRF')
 router.register(r'list-type-felling', views.TypeFellingSet, base_name='list-type-felling')
 router.register(r'list-shape-felling', views.ShapeFellingSet, base_name='list-shape-felling')
@@ -55,14 +53,12 @@ router.register(r'addresses',RentAddresSet, base_name = 'addresses')
 #cutareas api
 router.register(r'cutarea-forestry', ForestryKeysSet, base_name='cutarea-forestry') #localhost:/api/Виды мероприятий по использованию лесов (справочник)
 router.register(r'cutarea-distr-forestry', DistrForestKeysSet, base_name='cutarea-distr-forestry')
-router.register(r'cutarea-tract', TractKeysSet, base_name='cutarea-tract')#api геометрии лесосеки
 router.register(r'cutarea-qart', QartalKeysSet, base_name='cutarea-qart')
 router.register(r'cutarea-allotment', AllotmentSet, base_name='cutarea-allotment')
 router.register(r'cutarea-fca', FcaSet, base_name='cutarea-fca')
 router.register(r'cutarea-fca-use', FcaUseSet, base_name='cutarea-fca-use')
 router.register(r'cutarea-fca-photo', FcaPhotoSet, base_name='cutarea-fca-photo')
 router.register(r'cutarea-works', FcaWorksSet, base_name='cutarea-works')
-router.register(r'cutarea-forestsite', ForestSiteSet, base_name='cutarea-forestsite')
 
 
 

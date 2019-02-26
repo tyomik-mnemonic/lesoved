@@ -17,13 +17,25 @@ Ext.define('Foresto.model.EditLCA', {
     autoScroll:true,
     scrollable: true,
     grouped:true,
-    cls:'th',
+    title:'Мои лесосеки 2',
+    cls:'toolbar',
     pinHeaders: true,
 //	shadow: true,
 	rowLines: true,
 	frame:true,
 //	height: 500,
 //	autoSize:true,
+	tools: [{
+		type:'help'
+		},{
+		type:'search'		
+		},{
+		type:'close',
+		handler: function(e) {
+			
+				e.hide()
+		}
+		}],
 	store: {
 		model:'Foresto.model.CAListModel', 
 		autoLoad: true,
@@ -31,7 +43,7 @@ Ext.define('Foresto.model.EditLCA', {
 		pageSize:0,
 		proxy: {
 			type:'ajax',
-			url:'api/contract/',
+			url:'/api/cutarea-fca/',
 			reader:{
 				type:'json',
 				rootProperty: 'results'

@@ -40,8 +40,18 @@ olMap = new ol.Map({
 Ext.define('Foresto.view.map.Map', {
     extend: 'GeoExt.component.Map',
     xtype: 'foresto-map',
+    id:'foresto-map',
+    height: '100%',
+    width: '100%',
     map: olMap
+    
 
 });
 
 
+
+
+/*
+    
+
+ */

@@ -16,8 +16,14 @@
    }
 
 
+@font-face {
+    font-family: GraublauWeb;
+    src: url(file///home/user/MyProjects/forest-venv/lesoved/static/forest/app/fonts/ElektraText.otf) format("opentype");
+}
+
+
 .header-cls{
-    background-color:#181C1F;
+    background-color:#1E1846;
     font-family: 'Exo 2', sans-serif;
     color:#415b76;
     font-size: 20px;
@@ -27,7 +33,7 @@
 }
 
 .hdr2{
-    background-color: #1C2E3B; 
+    background-color: #004A97; 
     font-family: 'Exo 2', sans-serif;
     font-size: 18px;
     font-weight: 1000;
@@ -44,12 +50,12 @@
 233656 415b76 7b9ba6 cdd6d5 eef4f2
 */
 .toolbars{
-	background-color: #145BA6;
+	background-color: #004A97;
 	
 }
 
 .grbuttons{
-	background-color:#145BA6;
+	background-color: #004A97;
 	font-family: 'Exo 2', sans-serif;
 	font-weight: 850;
 	font-size:18px;
@@ -64,7 +70,7 @@
 
 
 .grbuttons:hover{
-	background-color:#64D9C7;
+	background-color:#D96340;
 	font-family: 'Exo 2', sans-serif;
 
 	font-weight: 850;
@@ -78,7 +84,7 @@
 
 
 .grbuttons:active{
-	background-color:#145BA6;
+	background-color:#004A97;
 	font-family: 'Exo 2', sans-serif;
 
 	font-weight: 850;
@@ -91,31 +97,31 @@
 }
 
 .grbuttonsBig{
-	background-color:#145BA6;
+	background-color:#004A97;
 	font-family: 'Exo 2', sans-serif;
 
 	font-weight: 850;
-	color:#cdd6d5;
+	color:#ffffff;
 	font-style: normal;
-	height: 20%;
+	height: 50;
     resize: both;
     overflow: auto;
     font-size:20px;
-    width: 7%;
+    width: 200;
     margin: auto;
  
     
 }
 
 .grbuttonsBig:hover{
-	background-color:#ffffff;
+	background-color:#D96340;
 	font: font-family: 'Exo 2', sans-serif;
 
 	font-weight: 850;
-	color:#233656; 
+	color:#ffffff; 
 	font-style: normal;
-	height: 20%;
-	width: 7%;
+	height: 50;
+	width: 200;
     resize: both;
     overflow: auto;
     font-size:20px;
@@ -124,14 +130,14 @@
 }
 
 .grbuttonsBig:active{
-	background-color:#33536B;
+	background-color:#004A97;
 	font: font-family: 'Exo 2', sans-serif;
 
 	font-weight: 850;
 	color:#ffffff; 
 	font-style: normal;
-	height: 20%;
-	width: 7%;
+	height: 50;
+	width: 200;
     resize: both;
     overflow: auto;
     font-size:20px;
@@ -164,47 +170,7 @@ font-weight:bold;
 .viewresize{
 	height: calc(var(--vh, 1vh) * 5);
 }
-.threethbutton{
- text-decoration:none; text-align:center; 
- padding:11px 32px; 
- border:solid 1px #447433; 
-  
- font:18px Arial, Helvetica, sans-serif; 
- font-weight:bold;
- height: 100px; 
- color:#447433; 
- background:#ffffff; 
- -webkit-box-shadow:0px 0px 2px #bababa, inset 0px 0px 1px #ffffff; 
- -moz-box-shadow: 0px 0px 2px #bababa,  inset 0px 0px 1px #ffffff;  
- box-shadow:0px 0px 2px #bababa, inset 0px 0px 1px #ffffff;  
-  
- }
-.threethbutton:hover{
- padding:11px 32px; 
- border:solid 1px #005072; 
-  
- font:18px Arial, Helvetica, sans-serif; 
- font-weight:bold; 
- color:#ffffff; 
- background:#447433; 
- -webkit-box-shadow:0px 0px 2px #bababa, inset 0px 0px 1px #ffffff; 
- -moz-box-shadow: 0px 0px 2px #bababa,  inset 0px 0px 1px #ffffff;  
- box-shadow:0px 0px 2px #bababa, inset 0px 0px 1px #ffffff;  
-  
-}
-.threethbutton:active{
- padding:11px 32px; 
- border:solid 1px #447433; 
-  
- font:18px Arial, Helvetica, sans-serif; 
- font-weight:bold; 
- color:#447433; 
- background:#ffffff; 
- -webkit-box-shadow:0px 0px 2px #bababa, inset 0px 0px 1px #ffffff; 
- -moz-box-shadow: 0px 0px 2px #bababa,  inset 0px 0px 1px #ffffff;  
- box-shadow:0px 0px 2px #bababa, inset 0px 0px 1px #ffffff;  
-  
-}
+
 
 .header-title-cls{
     color : #FFFFFF !important;
@@ -331,7 +297,7 @@ font-weight:bold;
 
 
 .justbuttons{
-	background-color:#145BA6;
+	background-color:#004A97;
 	font-family: 'Exo 2', sans-serif;
 	font-weight: 850;
 	font-size:18px;
@@ -358,12 +324,24 @@ font-weight:bold;
 
 
 .justbuttons:active{
-	background-color:#145BA6;
+	background-color:#004A97;
 	font-family: 'Exo 2', sans-serif;
 
 	font-weight: 850;
 	color:#ffffff; 
 	font-size:18px;
+	font-style: normal;
+	
+}
+
+
+.buttonsforsave{
+	background-color:#D96340;
+	font-family: 'Exo 2', sans-serif;
+
+	font-weight: 850;
+	font-size:18px;
+	color:#ffffff; 
 	font-style: normal;
 	
 }

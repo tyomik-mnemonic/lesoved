@@ -1,12 +1,12 @@
-Ext.define('Foresto.store.Certificate',{
+Ext.define('Foresto.store.FellForm',{
 	extend:'Ext.data.Store',
-	alias: "rentstoreCER",
-	storeID:'rentstoreCER',
+	alias: "fellform",
+	storeID:'fellform',
 	fields:['id','name'],
-	xtype:'standarstore',
+	xtype:'fellform',
 	proxy: {
 		type:'ajax',
-		url:'/api/renter-certificate/',
+		url:'/api/list-shape-felling/',
 		reader:{
 			type:'json',
 			rootProperty: 'results'

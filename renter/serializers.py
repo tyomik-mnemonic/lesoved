@@ -14,7 +14,7 @@ class AgreementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Agreement
         fields = ('id','renters_id','date','organ','num','date_reg','kadastre','glr',\
-        'reas_doc','use_start','use_end','act_num','act_date','project','project_date','project_author','positive_date')
+        'reas_doc','use_start','use_end','act_num','act_date','project','project_date','project_author','positive_date','viddoc')
 
 class RentAddresSerializer(serializers.ModelSerializer):
     class Meta:

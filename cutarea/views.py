@@ -14,11 +14,6 @@ class DistrForestKeysSet(viewsets.ModelViewSet):
     serializer_class = DistrForestKeysSerializer
     permission_classes = (permissions.AllowAny,)
 
-class TractKeysSet(viewsets.ModelViewSet):
-    queryset = TractKeys.objects.all()
-    serializer_class = TractKeysSerializer
-    permission_classes = (permissions.AllowAny,)
-
 class QartalKeysSet(viewsets.ModelViewSet):
     queryset = QartalKeys.objects.all()
     serializer_class = QartalKeysSerializer
@@ -48,9 +43,4 @@ class FcaPhotoSet(viewsets.ModelViewSet):
 class FcaWorksSet(viewsets.ModelViewSet):
     queryset = FcaWorks.objects.all()
     serializer_class = FcaWorksSerializer
-    permission_classes = (permissions.AllowAny,)
-
-class ForestSiteSet(viewsets.ModelViewSet):
-    queryset = ForestSite.objects.all()
-    serializer_class = ForestSiteSerializer
     permission_classes = (permissions.AllowAny,)
