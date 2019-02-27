@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    restart: always
+    ports:
+     - "${PORT}:80"
+    env_file: .env.review
+    # volumes:
+    #   - ./data/storage/:/app/storage/
+
+  postgres:
+    image: mdillon/postgis:10
+    volumes:
+      - /work/data/forest/pg/:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    env_file: .env.review
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    restart: always
+
+  geoserver:
+    image: winsent/geoserver:2.13
+    restart: always
+    ports:
+      - 81:8080
+    volumes:
+      - /work/data/forest/geoserver/:/opt/geoserver/data_dir

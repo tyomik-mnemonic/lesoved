@@ -17,13 +17,12 @@ Ext.define('Foresto.view.forms.Agreement', {
     },
     items: [{
         xtype: 'selectfield',
-        
         label: 'Арендатор',
         margin: '10 0 0 0',
         name: 'renter',
         valueField:'id',
-        displayField:'fio_represent',
-       // store: Ext.create('Foresto.store.RenterList')
+        displayField:'name',
+        store: Ext.create('Foresto.store.AllRenters')
     },{
         xtype: 'datepickerfield',
         destroyPickerOnHide: true,
@@ -93,9 +92,17 @@ Ext.define('Foresto.view.forms.Agreement', {
         label: 'Дата выдачи положительного заключения по итогам государственной экспертизы проекта освоения лесов',
         name: 'positive_date'
     },{
+    	label: 'Вид документа',
+        margin: '0 0 0 0',
+        name: 'viddoc',
+        valueField:'id',
+        displayField:'fio_represent',
+       // store: Ext.create('Foresto.store.RenterList')
+    	
+    },{
     	xtype:'button',
     	centured:true,
-    	margin: '15 0 0 215',
+    	margin: '20 0 0 0',
     	padding: 5,
     	width: 180,
     	cls: 'buttonsforsave',

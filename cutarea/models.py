@@ -115,7 +115,7 @@ class FcaPhoto(models.Model): #на потому, на перспективу
 class FcaWorks(models.Model):
     id = models.BigIntegerField(primary_key=True)
     id_fca = models.ForeignKey(Fca, models.DO_NOTHING, blank=True, null=True)
-    wkod = models.SmallIntegerField(blank=True, null=True) #вид работ на лесосеке
+    wkod =models.ForeignKey(ForestWorks, models.DO_NOTHING, blank=True, null=True, verbose_name='вид работ')
     main_type = models.SmallIntegerField(blank=True, null=True)
     fell_form = models.ForeignKey(ShapeFelling, on_delete=models.DO_NOTHING, verbose_name='форма рубки')
     fell_type = models.ForeignKey(TypeFelling, on_delete=models.DO_NOTHING, verbose_name='вид рубки')

@@ -102,8 +102,8 @@ Ext.define('Foresto.view.main.Main', {
                             xtype: 'foresto-agreement',
                             
                             renderTo: Ext.getBody(),
-                            height:'77%',
-                            margin: '208 98 200 215',
+                            height:'82%',
+                            
                             modal: true,
                             hideOnMaskTap: true,
                             showAnimation: {

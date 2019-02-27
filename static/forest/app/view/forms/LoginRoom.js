@@ -13,7 +13,7 @@ Ext.define('Foresto.view.forms.LoginRoom', {
     hideOnMaskTap: true,
    
     header: {
-        cls: 'header-cls'
+    	cls: 'hdr2'
         
     },
     scrollable: true,

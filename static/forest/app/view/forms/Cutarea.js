@@ -200,9 +200,12 @@ Ext.define('Foresto.view.forms.Cutarea', {
     	        valueField: 'id',
                 displayField:'num_fca'
         	},{
-        		xtype:'textfield',
+        		xtype:'selectfield',
                 label: 'вид работ',
-                name:'targetUsing'
+                name:'targetUsing',
+                store: Ext.create('Foresto.store.CutWorks'),
+    	        valueField: 'id',
+                displayField:'name'
             },{
                 xtype:'selectfield',
                 label: 'тип хозяйства',
@@ -269,14 +272,14 @@ Ext.define('Foresto.view.forms.Cutarea', {
                 xtype:'selectfield',
                 label: 'мероприятия',
                 name:'actions',
-              //  store: Ext.create('Foresto.store.Assort'),
+                store: Ext.create('Foresto.store.Actions'),
     	        valueField: 'id',
                 displayField:'name'
             },{
                 xtype:'selectfield',
                 label: 'объект',
                 name:'actions',
-              //  store: Ext.create('Foresto.store.Assort'),
+                store: Ext.create('Foresto.store.ObjectTypes'),
     	        valueField: 'id',
                 displayField:'name'
             },{
@@ -288,7 +291,7 @@ Ext.define('Foresto.view.forms.Cutarea', {
             	xtype:'selectfield',
                 label: 'лесовосстановление',
                 name:'actions',
-              //  store: Ext.create('Foresto.store.Assort'),
+                store: Ext.create('Foresto.store.Reforestration'),
     	        valueField: 'id',
                 displayField:'name'
               
