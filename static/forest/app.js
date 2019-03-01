@@ -3,6 +3,7 @@
  * needed for your application, but these edits will have to be merged by
  * Sencha Cmd when upgrading.
  */
+
 Ext.application({
     name: 'forest',
 
@@ -21,6 +22,10 @@ Ext.application({
     // modern toolkit, the main view will be added to the Viewport.
     //
     mainView: 'Foresto.view.main.Main',
+    
+    launch : function () {
+    	Ext.util.Format.defaultDateFormat= 'Y-m-d'
+    },
     
     initialize: function() {
         var testherna = Ext.create('Foresto.view.map.Mapworkspace',{
