@@ -4,9 +4,7 @@ Ext.define('Foresto.view.main.Main', {
     height: '100%',
 	width: '100%',
     centered:true,
-    layout:'box',
-    scope:this,
-    
+   // layout:'box',
     plugins: 'responsive',
     responsiveConfig:{
     	tall:{
@@ -19,21 +17,22 @@ Ext.define('Foresto.view.main.Main', {
         'Foresto.view.map.Map',
         'Foresto.view.main.ButtonController',
         'Foresto.view.forms.LoginRoom',
-        'Foresto.view.map.Mapworkspace',
-        'Foresto.view.forms.Cutarea',
-        'Foresto.model.EditLCA'
+        'Foresto.model.EditLCA',
+        'Foresto.model.EditListRenters'
    	    
     ],
     autosize:true,
-    padding: 0,
-    id:"bighBox",
+    id:"main",
     header: {
+    	height: 65,
         cls: 'header-cls',
         title : {
             cls : 'header-title-cls',
-            text : 'ГИС ПОДДЕРЖКИ ЛЕСОПОЛЬЗОВАНИЯ(pre-alpha)'
+            text : 'ЛЕСОВЕД(pre-alpha)'
         }
     },
+    
+
     tools: [{
         type: 'menu',
         handler: function() {
@@ -41,254 +40,175 @@ Ext.define('Foresto.view.main.Main', {
         }
         }],
     
-    items:[{
-        xtype: 'carousel',
-        id: "mainPart",
-        flex: 1,
-        defaults: {
-            border: true,
-            ui: 'light'
-        },
-        items: [{
-            
-            header: {
-            	cls : 'hdr2',
-               title : {
-                    cls : 'hdr2',
-                    text : 'КАРТА'}
-            },   
-            
-            id:'mapId',
-            xtype: 'panel',
-            layout:'vbox',
-            padding: 0,
-            scope: this,
-            items: [{
-            	xtype:'toolbar',
-            	cls:'toolbars',
-            	width: 160,
-            	docked:'left',
-            	scrollable: {
-            		y: false
-            	},
-            	items:[{
-            		text:'Проекты',
-            		ui:'action',
-            		margin:2,
-            		cls: 'grbuttons',
-            		height: 35,
-            		width: 120,
-            		handler: function() {
-            			
-            			Ext.create('Ext.panel.Panel',{
-            				height: '30%',
-            				header: {
-            					cls : 'hdr2'
-            			        
-            			    },
-            				width: 910,
-                    		renderTo:'bighBox',
-                    		centered:true,
-                    		margin: '98 0 0 215',
-                    		autoDestroy: true,
-                    		items:[{
-                    			xtype:'rentlist'
-                    		}],
-                    		collapsible:true,
-                    		clossable: true,
-                    		scope: this, 
-                    		tools: [{
-                    				type:'help'
-                    				},{
-                    				type:'search'		
-                    				},{
-                    				type:'close',
-                    				handler: function(e) {
-                    					
-                    						e.hide()
-                    				}
-                    				}],
-                    		title:'Договор'
-            			})
-                    }	 
-            	},{
-            		text:'Лесосеки',
-            		cls: 'grbuttons',
-            		ui:'action',
-            		height: 35,
-            		width: 120,
-            		margin:2,
-            		
-            		
-            		handler: function() {
-            			
-            			Ext.create('Ext.panel.Panel',{
-            				height: 300,
-            				header: {
-            					cls : 'hdr2'
-            			        
-            			    },
-            				width: 850,
-                    		renderTo:'bighBox',
-                    		centered:true,
-                    		margin: '98 0 0 215',
-                    		autoDestroy: true,
-                    		items:[{
-                    			xtype:'contlistII'
-                    		}],
-                    		collapsible:true,
-                    		clossable: true,
-                    		scope: this, 
-                    		tools: [{
-                    				type:'help'
-                    				},{
-                    				type:'search'		
-                    				},{
-                    				type:'close',
-                    				handler: function(e) {
-                    					
-                    						e.hide()
-                    				}
-                    				}],
-                    		title:'Лесосеки',
-                    		listeners:{
-                    		      afterrender: function(e){
-                    		          var d = e.getHeaderContainer();
-                    		          e.setHeight(10);
-                    		      }  
-                    		    }
-                    		
-            				
-            			})
-                    }
-            	},{
-            		xtype:'spacer'
-            	},{
-            		text:'+Лесосека',
-            		ui:'action',
-            		cls: 'grbuttons',
-            		height: 35,
-            		width: 120,
-            		margin:2,
-            		handler:'cutForms'
-            	},{
-            		text:'+Договор',
-            		ui:'action',
-            		cls: 'grbuttons',
-            		margin:2,
-            		height: 35,
-            		width: 120,
-            		handler:'agreForms'
-            	}]
-            },{
-                xtype: 'foresto-map',
-                id:'mapsource',
-                layout:'box'
-            }]
-           
-            
-        },{
-            title: 'Отчетность',
-            header:{
-            	cls: 'hdr2'
-            },
-            xtype: 'panel',
-            
-            layout: {
-                type: 'hbox',
-                align: 'middle',
-                pack: 'center'
-            },
-            
-            items:[{
-            	xtype:'button',
-            	cls:'grbuttons',
-            	ui: 'confirm',
-            	text:'Получить отчёт I-ИЛ',
-            	margin:'10px',
-            	height: 100,
-        		width: 215
-            	
-            },{
-            	xtype:'button',
-            	cls:'grbuttons',
-            	ui: 'confirm',
-            	text:'Получить отчёт I-ВЛ',
-            	height: 100,
-        		width: 215
-            }]
-        }]
+    items: [{
+    	xtype: 'foresto-map'
+
     },{
-        xtype: 'panel',
-       
-        header: {
-            cls: 'header-cls',
-            title : {
-                cls : 'header-title-cls',
-                text : 'Управление'
-            }
-        },
-        layout: 'fit',
-       
-        items:[{
-        	xtype: 'carousel',
-        	direction: 'vertical',
-        	
-            items: [{
-                styleHtmlContent: true,
-                layout: {
-                    type: 'card',
-                    align: 'center'
-                },
-                items: [{
-                	xtype:'button',
-                	ui: 'standart',
-                	cls: 'buttonView',
-                	text: 'Ввод информации',
-                	id: 'EnterInfoId',
-                	handler: function () {
-                		 Ext.create('Ext.panel.Panel', {
-                   		 
-                   		
-                   		
-                   		 autoshow: true,
-                   		 items: [{
-                   			 xtype:'foresto-enterInfo'
-                   		}]
-                   		
-                   	}).show();
-                   	}
-                	
-                	
-                }]  
-                
-                
-            },
-            {
-                
-                style: 'background-color: #6C9D5D',
-                styleHtmlContent: true,
-                layout: {
-                    type: 'card',
-                    align: 'center'
-                },
-                items: [{
-                	xtype:'button',
-                	cls: 'buttonView',
-                	
-                	text: 'Просмотр'
-                		
-                	
-                }]
-                
-            }]
-        	
-        }],
-        hidden: true,
-        border: true,
-        width: '18%'
-        
+        	xtype:'toolbar',
+        	id:'maptoolbar',
+        	cls:'toolbars',
+        	docked:'top',
+        	height: 38,
+        	items:[{
+        		text:'+Лесосека',
+        		ui:'action',
+        		cls: 'grbuttons',
+        		height: 35,
+        		width: 150,
+        		margin:2,
+        		//handler:'cutForms'
+        		handler: function() {
+                    if (!this.overlay) {
+                        this.overlay = Ext.Viewport.add({
+                            xtype: 'foresto-cutarea',
+                            scrollable: true,
+                            
+                            renderTo: Ext.getBody(),
+                            height:'55%',
+                            margin: '208 98 200 215',
+                            modal: true,
+                            hideOnMaskTap: true,
+                            showAnimation: {
+                                type: 'popIn',
+                                duration: 250,
+                                easing: 'ease-out'
+                            },
+                            hideAnimation: {
+                                type: 'popOut',
+                                duration: 250,
+                                easing: 'ease-out'
+                            },
+                            centered: true,
+                            //width: Ext.filterPlatform('ie10') ? '100%' : (Ext.os.deviceType == 'Phone') ? 260 : 400,
+                            //maxHeight: Ext.filterPlatform('ie10') ? '100%' : (Ext.os.deviceType == 'Phone') ? 220 : 400,
+                            scrollable: true
+                            
+                        });
+                    }
+
+                    this.overlay.show();
+                }
+        	},{
+        		text:'+Договор',
+        		ui:'action',
+        		cls: 'grbuttons',
+        		margin:2,
+        		height: 35,
+        		width: 145,
+        		scope: this,
+        		handler: function() {
+                    if (!this.overlay) {
+                        this.overlay = Ext.Viewport.add({
+                            xtype: 'foresto-agreement',
+                            
+                            renderTo: Ext.getBody(),
+                            height:'82%',
+                            
+                            modal: true,
+                            hideOnMaskTap: true,
+                            showAnimation: {
+                                type: 'popIn',
+                                duration: 250,
+                                easing: 'ease-out'
+                            },
+                            hideAnimation: {
+                                type: 'popOut',
+                                duration: 250,
+                                easing: 'ease-out'
+                            },
+                            centered: true,
+                            //width: Ext.filterPlatform('ie10') ? '100%' : (Ext.os.deviceType == 'Phone') ? 260 : 400,
+                            //maxHeight: Ext.filterPlatform('ie10') ? '100%' : (Ext.os.deviceType == 'Phone') ? 220 : 400,
+                            scrollable: true
+                            
+                        });
+                    }
+
+                    this.overlay.show();
+                }
+        	},{
+        		xtype:'spacer'
+        	},{
+        		text:'Мои проекты',
+        		ui:'action',
+            	margin:2,
+        		cls: 'grbuttons',
+        		height: 35,
+        		width: 210,
+        		handler: function() {
+        			
+        			Ext.create('Ext.panel.Panel',{
+        				height: '30%',
+        				header: {
+        					cls : 'hdr2'
+        			        
+        			    },
+        				width: 910,
+                		renderTo:'main',
+                		centered:true,
+                		margin: '795 0 0 1417',
+                		autoDestroy: true,
+                		items:[{
+                			xtype:'rentlist'
+                		}],
+                		collapsible:true,
+                		clossable: true,
+                		scope: this, 
+                		tools: [{
+                				type:'help'
+                				},{
+                				type:'search'		
+                				},{
+                				type:'close',
+                				handler: function(e) {
+                					
+                						e.hide()
+                				}
+                				}],
+                		title:'Договор'
+        			})
+                }	 
+        	},{
+        		text:'Мои лесосеки',
+        		cls: 'grbuttons',
+        		ui:'action',
+        		height: 35,
+        		width: 205,
+        		margin:2,
+        		handler: function() {
+                    if (!this.overlay) {
+                        this.overlay = Ext.Viewport.add({
+                            xtype: 'contlistII',
+                           // title:'Мои лесосеки',
+                           // cls:'toolbar',
+                            renderTo: Ext.getBody(),
+                            height:'77%',
+                            margin: '208 98 200 215',
+                            modal: true,
+                            hideOnMaskTap: true,
+                            showAnimation: {
+                                type: 'popIn',
+                                duration: 250,
+                                easing: 'ease-out'
+                            },
+                            hideAnimation: {
+                                type: 'popOut',
+                                duration: 250,
+                                easing: 'ease-out'
+                            },
+                            centered: true,
+                            //width: Ext.filterPlatform('ie10') ? '100%' : (Ext.os.deviceType == 'Phone') ? 260 : 400,
+                            //maxHeight: Ext.filterPlatform('ie10') ? '100%' : (Ext.os.deviceType == 'Phone') ? 220 : 400,
+                            scrollable: true
+                            
+                        });
+                    }
+
+                    this.overlay.show();
+                }
+        	}]
     }],
+           
     initialize: function() {
         Ext.Viewport.setMenu(this.getMenuCfg('top'), {
             side: 'top'
@@ -301,9 +221,9 @@ Ext.define('Foresto.view.main.Main', {
     getMenuCfg: function(side) {
         return {
             items: [{
-                text: 'ВОЙТИ',
+                text: 'Меню',
                 iconCls: 'x-fa fa-pencil',
-                cls:'grbuttons',
+                cls:'justbuttons',
                 modal: true,
                 hideOnMaskTap: true,
                 scope: this,
@@ -337,48 +257,6 @@ Ext.define('Foresto.view.main.Main', {
                 }
             }]
         };
-    },
-    /*initialize: function() {
-
-        if (!this.overlay) {
-            this.overlay = Ext.Viewport.add({
-                xtype: 'mapWorkSpace',
-                draggable:'true',
-                renderTo: Ext.getBody(),
-                fullscreen: true,
-                centered: true,
-                width: Ext.filterPlatform('ie10') ? '100%' : (Ext.os.deviceType == 'Phone') ? 260 : 400,
-                maxHeight: 1254,
-                scrollable: false
-                
-            });
-        }
-
-        this.overlay.show();
-    	
-    	  
-    }*/
-    /*
-    
-    initialize: function() {
-    	
-    	this.add({
-    		  xtype:'mapWorkSpace',
-    		  id:'mapWorkSpace',
-    		  maxHeight: 1215,
-    		  width: Ext.filterPlatform('ie10') ? '100%' : (Ext.os.deviceType == 'Phone') ? 260 : 400,
-    		  scrollable: false,
-    		  draggable: true,
-    		  centered:true
-    				  
-    	  });
-    	  
     }
     
-    initialize: function () {
-    	var mworkspace = Ext.create( 'Foresto.view.map.Mapworkspace');
-    
-    	
-    }*/
 });
-

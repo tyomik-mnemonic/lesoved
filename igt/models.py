@@ -9,7 +9,7 @@ from django.contrib.gis.db import models
 
 
 class Addresses(models.Model): #адрес арендатора
-    id_renter = models.IntegerField()
+    id_renter = models.IntegerField(primary_key=True)
     subject = models.IntegerField()
     city = models.CharField(max_length=50, blank=True, null=True)
     street = models.CharField(max_length=50, blank=True, null=True)

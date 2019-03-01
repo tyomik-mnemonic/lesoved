@@ -1,0 +1,11 @@
+Django==2.0.7
+GDAL==2.1.0
+dj-database-url==0.5.0
+psycopg2-binary==2.7.5
+django-polymorphic==2.0.2
+django-rest-polymorphic==0.1.7
+uwsgi==2.0.17
+django-dynamic-raw-id==2.4
+djangorestframework==3.8.2
+django-filter==2.0.0
+djangorestframework-gis==0.13

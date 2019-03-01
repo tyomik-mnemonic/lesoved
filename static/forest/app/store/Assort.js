@@ -6,7 +6,7 @@ Ext.define('Foresto.store.Assort',{
 	xtype:'assorstore',
 	proxy: {
 		type:'ajax',
-		url:'/api/forestry-assortment/',
+		url:'/api/list-forest-sort/',
 		reader:{
 			type:'json',
 			rootProperty: 'results'

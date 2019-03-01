@@ -6,7 +6,7 @@ Ext.define('Foresto.store.CutUnit',{
 	xtype:'unitstore',
 	proxy: {
 		type:'ajax',
-		url:'/api/forestry-unit/',
+		url:'/api/list-unit-meas/',
 		reader:{
 			type:'json',
 			rootProperty: 'results'

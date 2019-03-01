@@ -2,18 +2,17 @@ Ext.define('Foresto.view.forms.LoginRoom', {
     extend: 'Ext.form.Panel',
     title: 'Вход',
     width: 500,
-    height: 250,
+    height: 310,
     id:'login',
     fullscreen: true,
     layout:'vbox',
     closable: false,
-    requires: ['Foresto.view.forms.LoginWorkSpace',
-               'Foresto.model.EditListRenters'],
+    requires: ['Foresto.view.forms.Regestration'],
     modal: true,
     hideOnMaskTap: true,
    
     header: {
-        cls: 'header-cls'
+    	cls: 'hdr2'
         
     },
     scrollable: true,
@@ -43,7 +42,7 @@ Ext.define('Foresto.view.forms.LoginRoom', {
             },{
             	xtype: 'button',
             	text:'Войти',
-            	cls:'grbuttons',
+            	cls:'justbuttons',
             	ui: 'confirm',
             	margin: 4
             	
@@ -52,27 +51,79 @@ Ext.define('Foresto.view.forms.LoginRoom', {
             },{
             	xtype: 'button',
                 text:'Регистрация',
-                cls:'grbuttons',
+                cls:'justbuttons',
                 margin: 4,
                 handler: function() {
-                    if (!this.overlay) {
-                        this.overlay = Ext.Viewport.add({
-                            xtype: 'loginWS',
-                            layout:'fit',
-                            hidden: true
-                            
-                            
-                            
-                        });
-                    }
+            		if (!this.overlay) {
+            			this.overlay = Ext.Viewport.add({
+            				xtype: 'regs',
+            				
+            				scrollable: true,
+                        
+            				renderTo: Ext.getBody(),
+            				height:'55%',
+            				margin: '208 98 200 215',
+            				modal: true,
+            				hideOnMaskTap: true,
+            				showAnimation: {
+            					type: 'popIn',
+            					duration: 250,
+            					easing: 'ease-out'
+            				},
+            				hideAnimation: {
+            					type: 'popOut',
+            					duration: 250,
+            					easing: 'ease-out'
+            				},
+            				centered: true,
+                        //width: Ext.filterPlatform('ie10') ? '100%' : (Ext.os.deviceType == 'Phone') ? 260 : 400,
+                        //maxHeight: Ext.filterPlatform('ie10') ? '100%' : (Ext.os.deviceType == 'Phone') ? 220 : 400,
+            				scrollable: true
+                        
+            			});
+            		}
 
-                    this.overlay.show();
-                }
+            		this.overlay.show();
+            	}
+            			
+            },{
+            	xtype: 'button',
+                text:'Информация о сервисе',
+                cls:'justbuttons',
+                margin: 4,
+            	handler: function() {
+            		if (!this.overlay) {
+            			this.overlay = Ext.Viewport.add({
+            				xtype: 'regs',
+            				scrollable: true,
+                        
+            				renderTo: Ext.getBody(),
+            				height:'55%',
+            				margin: '208 98 200 215',
+            				modal: true,
+            				hideOnMaskTap: true,
+            				showAnimation: {
+            					type: 'popIn',
+            					duration: 250,
+            					easing: 'ease-out'
+            				},
+            				hideAnimation: {
+            					type: 'popOut',
+            					duration: 250,
+            					easing: 'ease-out'
+            				},
+            				centered: true,
+                        //width: Ext.filterPlatform('ie10') ? '100%' : (Ext.os.deviceType == 'Phone') ? 260 : 400,
+                        //maxHeight: Ext.filterPlatform('ie10') ? '100%' : (Ext.os.deviceType == 'Phone') ? 220 : 400,
+            				scrollable: true
+                        
+            			});
+            		}
+
+            		this.overlay.show();
+            	}
             			
             }
-            	
-            
-            
         ]
 });
 

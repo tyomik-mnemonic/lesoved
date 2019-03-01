@@ -37,7 +37,7 @@ Ext.define('Foresto.view.forms.RenterData', {
         name: 'document',
         valueField: 'id',
         displayField: 'name',
-        store: Ext.create('Foresto.store.RentDocTypeStore')
+       // store: Ext.create('Foresto.store.RentDocTypeStore')
        
         
         
@@ -51,7 +51,7 @@ Ext.define('Foresto.view.forms.RenterData', {
         name: 'legal_type',
         valueField: 'id',
         displayField: 'name',
-        store: Ext.create('Foresto.store.RentLegFormStore')
+        //store: Ext.create('Foresto.store.RentLegFormStore')
         
         
     },{
@@ -66,7 +66,7 @@ Ext.define('Foresto.view.forms.RenterData', {
         name: 'certificate',
         valueField: 'id',
         displayField: 'name',
-        store: Ext.create('Foresto.store.Certificate')
+        //store: Ext.create('Foresto.store.Certificate')
         
         	
         

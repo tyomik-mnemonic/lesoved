@@ -34,7 +34,9 @@ ALLOWED_HOSTS = ['*']
 
 
 MYOWN_APPS = [
-    'igt'
+    'classification_list',
+    'renter',
+    'cutarea'
     ]
 
 INSTALLED_APPS = [
@@ -51,7 +53,7 @@ INSTALLED_APPS = [
     'rest_framework_gis',
     'django_filters',
     'inspectdb_refactor',
-    
+
 ] + MYOWN_APPS
 
 MIDDLEWARE = [
@@ -90,22 +92,34 @@ WSGI_APPLICATION = 'lesoved.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-
+'''
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'igt',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'lsvd_project',
         'USER': 'postgres',
         'HOST': '172.17.0.2',
         'PASSWORD': 'ntnhfrcby_19',
         'PORT': '5432',
         'OPTIONS': {
+            'options': '-c search_path=public'
+         }
+    }
+}
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'lesoved',
+        'USER': 'postgres',
+        'HOST': '172.16.16.40',
+        'PASSWORD': 'igt_3631',
+        'PORT': '25432',
+        'OPTIONS': {
             'options': '-c search_path=forest'
          }
     }
 }
-
-
 
 
 # Password validation
@@ -125,6 +139,18 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+DRF_PAGE_SIZE = 20
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': DRF_PAGE_SIZE
+}
+
 
 
 # Internationalization
