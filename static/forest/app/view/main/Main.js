@@ -221,7 +221,7 @@ Ext.define('Foresto.view.main.Main', {
     getMenuCfg: function(side) {
         return {
             items: [{
-                text: 'ВОЙТИ',
+                text: 'Меню',
                 iconCls: 'x-fa fa-pencil',
                 cls:'justbuttons',
                 modal: true,

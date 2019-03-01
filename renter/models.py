@@ -7,8 +7,8 @@ from classification_list.models import*
 class Renters(models.Model):
     id = models.AutoField(primary_key=True)
     org_prav_form = models.ForeignKey(Pravform, models.DO_NOTHING, blank=True, null=True)
-    inn = models.CharField('ИНН',max_length=12)
-    account_name = models.CharField(max_length=20) #для регистрации
+    inn = models.CharField('ИНН',max_length=100, blank=True, null=True)
+    account_name = models.CharField(max_length=100, blank=True, null=True) #для регистрации
     acc_pwd = models.CharField(max_length=128, blank=True, null=True)#обдумать рег позже
     name = models.CharField('Наиминование организации',max_length=150, blank=True, null=True)
     snameplp = models.CharField(max_length=100, blank=True, null=True) #Ф

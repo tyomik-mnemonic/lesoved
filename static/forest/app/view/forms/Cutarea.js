@@ -18,6 +18,7 @@ Ext.define('Foresto.view.forms.Cutarea', {
     	id:'cutareap1',
     	cls:'justbuttons',
     	title:'Лесосека',
+    	scope:this,
     	items:[{
     	    	xtype: 'selectfield',
     	        label: 'субъект РФ',
@@ -38,9 +39,15 @@ Ext.define('Foresto.view.forms.Cutarea', {
     	    },{
         		xtype:'textfield',
         		label: 'урочище',
-        		name: 'tract',
+        		name: 'tract'
         		
-        		
+        	},{
+        		xtype: 'selectfield',
+    	        label: 'выдел',
+    	        name: 'allo',
+    	        store: Ext.create('Foresto.store.Allots'),
+    	        valueField: 'id',
+                displayField:'num'
         	},{
     	    	xtype: 'textfield',
     	        label: 'док. номер лесосеки',
@@ -89,14 +96,14 @@ Ext.define('Foresto.view.forms.Cutarea', {
     	    	cls: 'buttonsforsave',
     	    	text:'сохранить',
     	    
-            	handler: function(me) {
-            		var dataupNew = me.up('cutareap1').down('cutareap1').getValues();;//.items.items[0];
-              		//var dataSetNew = dataupNew.getValues('cutareap1');
+            	handler: function() {
+            		var cutform = this.up();
+                  	var dataSetNew1 = cutform.getValues();
                 	
                 	Ext.Ajax.request({
                 		url:'/api/cutarea-fca/',
                 		method: 'POST',
-                		params: dataupNew
+                		params: dataSetNew1
                 	})
                 }
             }]
@@ -104,8 +111,8 @@ Ext.define('Foresto.view.forms.Cutarea', {
         	xtype:'panel',
         	cls:'justbuttons',
         	layout: 'vbox',
-
             scrollable: true,
+            scope:this,
         	title:'Планируемое использование',
         	items:[{
         		xtype:'selectfield',
@@ -175,15 +182,15 @@ Ext.define('Foresto.view.forms.Cutarea', {
             	cls: 'buttonsforsave',
             	text:'сохранить',
             
-                handler: function() {
-                	var charform = this.up('panel');
-                  	var dataSetNew1 = charform.getValues();
-                    	
-                    Ext.Ajax.request({
-                    	url:'/api/characteristic/',
-                    	method: 'POST',
-                    	params: dataSetNew1
-                    })
+            	handler: function(me) {
+            		var planform = this.up();
+                  	var dataSetNew2 = planform.getValues();
+                	
+                	Ext.Ajax.request({
+                		url:'/api/cutarea-fca-use/',
+                		method: 'POST',
+                		params: dataSetNew2
+                	})
                 }
            }]
     	},{

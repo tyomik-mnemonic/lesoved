@@ -140,6 +140,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+DRF_PAGE_SIZE = 20
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': DRF_PAGE_SIZE
+}
+
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
