@@ -2,6 +2,7 @@
 from django.conf import settings
 from rest_framework import serializers, utils
 from .models import *
+from classification_list.models import SubjectRf
 
 class ForestryKeysSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,6 +26,7 @@ class AllotmentSerializer(serializers.ModelSerializer):
         fields = ('id','geom','num_kvr')
 
 class FcaSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Fca
         fields = ('id','subject','num_of_agree','uroch','num_allot','num_fca','ar_fca',\
