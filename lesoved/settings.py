@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_gis',
     'django_filters',
-    'inspectdb_refactor',
 
 ] + MYOWN_APPS
 
@@ -92,21 +91,7 @@ WSGI_APPLICATION = 'lesoved.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'lsvd_project',
-        'USER': 'postgres',
-        'HOST': '172.17.0.2',
-        'PASSWORD': 'ntnhfrcby_19',
-        'PORT': '5432',
-        'OPTIONS': {
-            'options': '-c search_path=public'
-         }
-    }
-}
-'''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
@@ -148,7 +133,10 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': DRF_PAGE_SIZE
+    'PAGE_SIZE': DRF_PAGE_SIZE,
+    "DATE_INPUT_FORMATS": ["%Y-%m-%d"],
+    "DATE_OUTPUT_FORMATS": ["%Y-%m-%d"],
+
 }
 
 
