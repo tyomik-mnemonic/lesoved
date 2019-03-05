@@ -98,7 +98,7 @@ DATABASES = {
         'USER': 'postgres',
         'HOST': '172.17.0.2',
         'PASSWORD': 'igt_3631',
-        'PORT': '25432',
+        'PORT': '5432',
         'OPTIONS': {
             'options': '-c search_path=forest'
          }
