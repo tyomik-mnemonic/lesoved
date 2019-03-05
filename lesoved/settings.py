@@ -93,18 +93,22 @@ WSGI_APPLICATION = 'lesoved.wsgi.application'
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'lesoved',
-        'USER': 'postgres',
-        'HOST': '172.16.16.40',
-        'PASSWORD': 'igt_3631',
-        'PORT': '25432',
-        'OPTIONS': {
-            'options': '-c search_path=forest'
-         }
-    }
+    'default': dj_database_url.config(default='postgres://'),
 }
+
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+#        'NAME': 'lesoved',
+#        'USER': 'postgres',
+#        'HOST': '172.16.16.40',
+#        'PASSWORD': 'igt_3631',
+#        'PORT': '25432',
+#        'OPTIONS': {
+#            'options': '-c search_path=forest'
+#         }
+#    }
+# }
 
 
 # Password validation
