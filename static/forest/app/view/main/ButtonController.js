@@ -138,53 +138,12 @@ Ext.define('Foresto.view.main.ButtonController', {
 
         this.overlay.show();
     },
-      listCutarea: function() {
-      	var items5 = [{
-              xtype:'mapWorkSpace',
-              scrollable: true,
-              scope: this,
-              
-              renderTo: 'mainPart',
-              
-              handler: function() {
-            	  this.action5.hide();
-              }
-        	},{
-                text: 'Сохранить',
-                cls:'renttypebutton',
-                ui: 'confirm',
-                handler: function() {
-                   
-                  	  var dataup05 = this.up().items.items[0];
-                  		var dataSet05 = dataup05.getValues()
-                    	
-                	
-                	
-                	
-                	Ext.Ajax.request({
-                		url:'/api/forestry/',
-                		method: 'POST',
-                		params: dataSet05
-                	})
-                }
-        	}, {
-        		  text: 'Отменить',
-                ui: 'Decline',
-                cls:'renttypebutton',
-                scope: this,
-                handler: function() {
-                    this.actions5.hide();
-              }
-        	}];
-        	if (!this.actions5) {
-                this.actions5 = Ext.create('Ext.ActionSheet', {
-                    items: items5
-                });
-            }
-
-            Ext.Viewport.add(this.actions5);
-            this.actions5.show();
-        }
+    /*init: Ext.Viewport.setMenu(this.getMenuCfg('right'), {
+        side: 'right',
+        reveal: true
+    }),*/
+    
+       
       
 });
 

@@ -19,7 +19,8 @@ Ext.define('Foresto.view.main.Main', {
         'Foresto.view.main.ButtonController',
         'Foresto.view.forms.LoginRoom',
         'Foresto.model.EditLCA',
-        'Foresto.model.EditListRenters'
+        'Foresto.model.EditListRenters',
+        'Ext.Menu'
    	    
     ],
     autosize:true,
@@ -27,19 +28,33 @@ Ext.define('Foresto.view.main.Main', {
     header: {
     	height: 65,
         cls: 'header-cls',
+        items:[{
+        	xtype:'button',
+        	text:'Войти',
+        	handler: function() {
+                Ext.Viewport.toggleMenu('right');
+            }
+        	
+        	
+        },{
+        	xtype:'button',
+        	text:'О сервисе',
+        	
+        }],
         title : {
             cls : 'header-title-cls',
             text : 'ЛЕСОВЕД(pre-alpha)'
-        }
+        },
+        
     },
     
-
-    tools: [{
+    /*tools: [{
         type: 'menu',
         handler: function() {
-            Ext.Viewport.toggleMenu('top');
+            Ext.Viewport.toggleMenu('right');
         }
-        }],
+    }],*/
+    
     
     items: [{
     	xtype: 'foresto-map'
@@ -86,7 +101,46 @@ Ext.define('Foresto.view.main.Main', {
         		handler: 'cutareaList'
         	}]
     }],
-           
+    initialize: function() {
+    	Ext.Viewport.setMenu(this.getMenuCfg('right'), {
+    	
+        	side: 'right'
+    	});
+	},
+    
+    doDestroy: function () {
+    	Ext.Viewport.removeMenu('right');
+    	this.callParent();
+    },
+    getMenuCfg: function(side) {
+        return {
+            items: [{
+                text: 'Settings',
+                iconCls: 'x-fa fa-gear',
+                scope: this,
+                handler: function() {
+                    Ext.Viewport.hideMenu(side);
+                }
+            }, {
+                text: 'New Item',
+                iconCls: 'x-fa fa-pencil',
+                scope: this,
+                handler: function() {
+                    Ext.Viewport.hideMenu(side);
+                }
+            }, {
+                xtype: 'button',
+                text: 'Star',
+                iconCls: 'x-fa fa-star',
+                scope: this,
+                handler: function() {
+                    Ext.Viewport.hideMenu(side);
+                }
+            }]
+        };
+    },
+    
+    /*       
     initialize: function() {
         Ext.Viewport.setMenu(this.getMenuCfg('top'), {
             side: 'top'
@@ -135,6 +189,6 @@ Ext.define('Foresto.view.main.Main', {
                 }
             }]
         };
-    }
+    }*/
     
 });
