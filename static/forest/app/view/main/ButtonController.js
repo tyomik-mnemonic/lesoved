@@ -18,8 +18,8 @@ Ext.define('Foresto.view.main.ButtonController', {
         if (!this.overlay) {
             this.overlay = Ext.Viewport.add({
                 xtype: 'foresto-cutarea',
+                scope:this,
                 scrollable: true,
-                
                 renderTo: Ext.getBody(),
                 height:'55%',
                 margin: '208 98 200 215',
@@ -50,10 +50,10 @@ Ext.define('Foresto.view.main.ButtonController', {
         if (!this.overlay) {
             this.overlay = Ext.Viewport.add({
                 xtype: 'foresto-agreement',
-                
                 renderTo: Ext.getBody(),
                 height:'82%',
-                
+                scope:this,
+
                 modal: true,
                 hideOnMaskTap: true,
                 showAnimation: {
@@ -84,7 +84,8 @@ Ext.define('Foresto.view.main.ButtonController', {
                 
                 renderTo: Ext.getBody(),
                 height:'82%',
-                
+                scope:this,
+
                 modal: true,
                 hideOnMaskTap: true,
                 showAnimation: {
@@ -115,7 +116,8 @@ Ext.define('Foresto.view.main.ButtonController', {
                 
                 renderTo: Ext.getBody(),
                 height:'82%',
-                
+                scope:this,
+
                 modal: true,
                 hideOnMaskTap: true,
                 showAnimation: {

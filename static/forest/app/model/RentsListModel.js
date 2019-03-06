@@ -4,21 +4,42 @@ Ext.define('Foresto.model.RentsListModel',{
 		name: 'id',
 		type:'number'
 	},{
-		name:'document'
+		name:'org_prav_form'
 		
 			
 	},{
-		name:'document_num',
-		type:'number'	
+		name:'inn'	
 	},{
-		name:'legal_type'
+		name:'account_name'
 		
 	},{
-		name:'fio_represent'
+		name:'acc_pwd'
 	},{
-		name:'position_represent'
+		name:'name'
 	},{
-		name:'certificate'
-	}],
+		name:'snameplp'
+		
+			
+	},{
+		name:'fnameplp'	
+	},{
+		name:'patronymicplp'
+		
+	},{
+		name:'position'
+	},{
+		name:'leg_docum'
+	},{
+		name:'ogrn'
+		
+			
+	},{
+		name:'identity_doc'	
+	},{
+		name:'serial_doc'
+		
+	},{
+		name:'number_doc'
+	}]
 	
 })

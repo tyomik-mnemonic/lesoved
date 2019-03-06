@@ -1,6 +1,7 @@
 Ext.define('Foresto.model.EditListRenters', {
 	extend:'Ext.grid.Grid',
 	xtype: 'rentlist',
+	id:'rentlist',
 	requires: [
 	           'Ext.grid.plugin.Editable',
 	           'Ext.grid.plugin.ViewOptions',
@@ -11,19 +12,20 @@ Ext.define('Foresto.model.EditListRenters', {
 	           'Ext.grid.plugin.RowExpander',
 	'Foresto.model.RentsListModel'
 	],
-	
-
 	hideHeaders:false,
     autoScroll:true,
     scrollable: true,
     grouped:true,
+    rowLines: true,
+	frame:true,
     cls:'th',
     pinHeaders: true,
 //	shadow: true,
 	rowLines: true,
 	frame:true,
+	scope: this,
 //	height: 500,
-//	autoSize:true,
+	autoSize:true,
 	
 	store: {
 		model:'Foresto.model.RentsListModel', 
@@ -39,6 +41,20 @@ Ext.define('Foresto.model.EditListRenters', {
 		
 		}
 	},
+	initialize:
+		function() {
+		a = Ext.getCmp('ext-headercontainer-1')
+		a.setHeight(100);
+		a.setWidth(100);
+		return a
+		},
+	header: {
+	    	height: 65,
+	        cls: 'header-cls',
+	        title:'Список проектов'
+	},
+	
+	    
 	plugins: [
 		{
 			type: 'grideditable',
@@ -103,45 +119,97 @@ Ext.define('Foresto.model.EditListRenters', {
 		dataIndex: 'id',
 		maxWidth: 50,
 	},{
-		text:'document',
-		dataIndex:'document',
+		text:'org_prav_form',
+		dataIndex:'org_prav_form',
 		editable:true,
 		height: 20
 //		flex: 1
 			
 	},{
-		text:'document_num',
-		dataIndex:'document_num',
+		text:'inn',
+		dataIndex:'inn',
 		editable:true,
 		height: 20
 //		flex: 1
 	},{
-		text:'legal_type',
-		dataIndex:'legal_type',
+		text:'account_name',
+		dataIndex:'account_name',
 		editable:true,
 		height: 20
 //		flex: 1
 	},{
-		text:'fio_represent',
-		dataIndex:'fio_represent',
+		text:'acc_pwd',
+		dataIndex:'acc_pwd',
 		minWidth: 150,
 		editable:true,
 		height: 20
 //		flex: 1
 	},{
-		text:'position_represent',
-		dataIndex:'position_represent',
+		text:'name',
+		dataIndex:'name',
 		minWidth: 150,
 		editable:true,
 		height: 20
 //		flex: 1
 	},{
-		text:'certificate',
-		dataIndex:'certificate',
+		text:'snameplp',
+		dataIndex:'snameplp',
 		editable:true,
 		height: 20
 //		flex: 1
-	}//'document','document_num','legal_type','fio_represent','position_represent','certificate'
+	},{
+		text:'fnameplp',
+		dataIndex:'fnameplp',
+		editable:true,
+		height: 20
+//		flex: 1
+	},{
+		text:'patronymicplp',
+		dataIndex:'patronymicplp',
+		minWidth: 150,
+		editable:true,
+		height: 20
+//		flex: 1
+	},{
+		text:'position',
+		dataIndex:'position',
+		minWidth: 150,
+		editable:true,
+		height: 20
+//		flex: 1
+	},{
+		text:'leg_docum',
+		dataIndex:'leg_docum',
+		editable:true,
+		height: 20
+//		flex: 1
+	},{
+		text:'ogrn',
+		dataIndex:'ogrn',
+		minWidth: 150,
+		editable:true,
+		height: 20
+//		flex: 1
+	},{
+		text:'identity_doc',
+		dataIndex:'identity_doc',
+		minWidth: 150,
+		editable:true,
+		height: 20
+//		flex: 1
+	},{
+		text:'serial_doc',
+		dataIndex:'serial_doc',
+		editable:true,
+		height: 20
+//		flex: 1
+	},{
+		text:'number_doc',
+		dataIndex:'number_doc',
+		editable:true,
+		height: 20
+//		flex: 1
+	}
 	]
 	
 	

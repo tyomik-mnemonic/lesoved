@@ -31,6 +31,7 @@ Ext.define('Foresto.view.main.Main', {
         items:[{
         	xtype:'button',
         	text:'Войти',
+        	cls:'mainbuttons',
         	handler: function() {
                 Ext.Viewport.toggleMenu('right');
             }
@@ -39,6 +40,8 @@ Ext.define('Foresto.view.main.Main', {
         },{
         	xtype:'button',
         	text:'О сервисе',
+
+        	cls:'mainbuttons',
         	
         }],
         title : {
@@ -80,7 +83,36 @@ Ext.define('Foresto.view.main.Main', {
         		margin:2,
         		height: 35,
         		width: 145,
-        		handler: 'agreeForm'
+        		handler: function() {
+        	        if (!this.overlay) {
+        	            this.overlay = Ext.Viewport.add({
+        	                xtype: 'foresto-agreement',
+        	                renderTo: Ext.getBody(),
+        	                height:'82%',
+        	                scope:this,
+
+        	                modal: true,
+        	                hideOnMaskTap: true,
+        	                showAnimation: {
+        	                    type: 'popIn',
+        	                    duration: 250,
+        	                    easing: 'ease-out'
+        	                },
+        	                hideAnimation: {
+        	                    type: 'popOut',
+        	                    duration: 250,
+        	                    easing: 'ease-out'
+        	                },
+        	                centered: true,
+        	                //width: Ext.filterPlatform('ie10') ? '100%' : (Ext.os.deviceType == 'Phone') ? 260 : 400,
+        	                //maxHeight: Ext.filterPlatform('ie10') ? '100%' : (Ext.os.deviceType == 'Phone') ? 220 : 400,
+        	                scrollable: true
+        	                
+        	            });
+        	        }
+
+        	        this.overlay.show();
+        	    }
         	},{
         		xtype:'spacer'
         	},{
@@ -90,7 +122,43 @@ Ext.define('Foresto.view.main.Main', {
         		cls: 'grbuttons',
         		height: 35,
         		width: 210,
-        		handler: 'projectList' 
+        		handler: function() {
+        	        if (!this.overlay) {
+        	            this.overlay = Ext.Viewport.add({
+        	                xtype: 'rentlist',
+        	                
+        	                renderTo: Ext.getBody(),
+        	                height:'55%',
+        	                width: '70%',
+        	                header:{
+        	                	title:'Список проектов',
+        	                	cls:'hdr2'
+        	                },
+        	        	
+        	                scope:this,
+
+        	                modal: true,
+        	                hideOnMaskTap: true,
+        	                showAnimation: {
+        	                    type: 'popIn',
+        	                    duration: 250,
+        	                    easing: 'ease-out'
+        	                },
+        	                hideAnimation: {
+        	                    type: 'popOut',
+        	                    duration: 250,
+        	                    easing: 'ease-out'
+        	                },
+        	                centered: true,
+        	                //width: Ext.filterPlatform('ie10') ? '100%' : (Ext.os.deviceType == 'Phone') ? 260 : 400,
+        	                //maxHeight: Ext.filterPlatform('ie10') ? '100%' : (Ext.os.deviceType == 'Phone') ? 220 : 400,
+        	                scrollable: true
+        	                
+        	            });
+        	        }
+
+        	        this.overlay.show();
+        	    }
         	},{
         		text:'Мои лесосеки',
         		cls: 'grbuttons',
@@ -98,7 +166,38 @@ Ext.define('Foresto.view.main.Main', {
         		height: 35,
         		width: 205,
         		margin:2,
-        		handler: 'cutareaList'
+        		handler: function() {
+        	        if (!this.overlay) {
+        	            this.overlay = Ext.Viewport.add({
+        	                xtype: 'contlistII',
+        	                
+        	                renderTo: Ext.getBody(),
+        	                height:'55%',
+        	                width: '70%',
+        	                scope:this,
+
+        	                modal: true,
+        	                hideOnMaskTap: true,
+        	                showAnimation: {
+        	                    type: 'popIn',
+        	                    duration: 250,
+        	                    easing: 'ease-out'
+        	                },
+        	                hideAnimation: {
+        	                    type: 'popOut',
+        	                    duration: 250,
+        	                    easing: 'ease-out'
+        	                },
+        	                centered: true,
+        	                //width: Ext.filterPlatform('ie10') ? '100%' : (Ext.os.deviceType == 'Phone') ? 260 : 400,
+        	                //maxHeight: Ext.filterPlatform('ie10') ? '100%' : (Ext.os.deviceType == 'Phone') ? 220 : 400,
+        	                scrollable: true
+        	                
+        	            });
+        	        }
+
+        	        this.overlay.show();
+        	    }
         	}]
     }],
     initialize: function() {
@@ -115,32 +214,70 @@ Ext.define('Foresto.view.main.Main', {
     getMenuCfg: function(side) {
         return {
             items: [{
-                text: 'Settings',
+                text: 'Вход',
                 iconCls: 'x-fa fa-gear',
                 scope: this,
-                handler: function() {
-                    Ext.Viewport.hideMenu(side);
+                cls:'mainbuttons',
+                handler: function(){
+                	var loginf = new Ext.form.Panel ({
+                		xtype:'formpanel',
+                		layout:'vbox',
+                		id:'loginf',
+                		items:[{
+                			xtype:'textfield',
+                			text:'login'
+                		}]
+                	})
+                	
+                	return loginf;
                 }
+                
+                
+                  
+                
+                
             }, {
-                text: 'New Item',
+                text: 'Регистрация',
                 iconCls: 'x-fa fa-pencil',
                 scope: this,
+
+                cls:'mainbuttons',
                 handler: function() {
-                    Ext.Viewport.hideMenu(side);
-                }
-            }, {
-                xtype: 'button',
-                text: 'Star',
-                iconCls: 'x-fa fa-star',
-                scope: this,
-                handler: function() {
-                    Ext.Viewport.hideMenu(side);
-                }
+                    if (!this.overlay) {
+                        this.overlay = Ext.Viewport.add({
+                            xtype: 'regs',
+                            scrollable: true,
+                            
+                            renderTo: Ext.getBody(),
+                            height:'55%',
+                            margin: '208 98 200 215',
+                            modal: true,
+                            hideOnMaskTap: true,
+                            showAnimation: {
+                                type: 'popIn',
+                                duration: 250,
+                                easing: 'ease-out'
+                            },
+                            hideAnimation: {
+                                type: 'popOut',
+                                duration: 250,
+                                easing: 'ease-out'
+                            },
+                            centered: true,
+                            //width: Ext.filterPlatform('ie10') ? '100%' : (Ext.os.deviceType == 'Phone') ? 260 : 400,
+                            //maxHeight: Ext.filterPlatform('ie10') ? '100%' : (Ext.os.deviceType == 'Phone') ? 220 : 400,
+                            scrollable: true
+                            
+                        });
+                    }
+
+                    this.overlay.show();
+                	}
             }]
-        };
+        }
     },
     
-    /*       
+    /*   
     initialize: function() {
         Ext.Viewport.setMenu(this.getMenuCfg('top'), {
             side: 'top'
