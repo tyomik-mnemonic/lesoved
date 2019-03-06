@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/2.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
+import dj_database_url
 
 import os
 
@@ -92,18 +93,24 @@ WSGI_APPLICATION = 'lesoved.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'lesoved',
-        'USER': 'postgres',
-        'HOST': '172.17.0.2',
-        'PASSWORD': 'igt_3631',
-        'PORT': '5432',
-        'OPTIONS': {
-            'options': '-c search_path=forest'
-         }
-    }
+    'default': dj_database_url.config(default='postgres://'),
 }
+
+DATABASE_ROUTERS = ['config.dbrouters.DefaultOnlyMigrateRouter']
+
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+#        'NAME': 'lesoved',
+#        'USER': 'postgres',
+#        'HOST': '172.17.0.2',
+#        'PASSWORD': 'igt_3631',
+#        'PORT': '5432',
+#        'OPTIONS': {
+#            'options': '-c search_path=forest'
+#         }
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
