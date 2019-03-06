@@ -89,6 +89,13 @@ WSGI_APPLICATION = 'lesoved.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+from .db import *
+
+try:
+    from .settings_local import *
+except ImportError:
+    pass
+
 # DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.contrib.gis.db.backends.postgis',
@@ -159,11 +166,3 @@ STATICFILES_DIRS = (
 STATIC_ROOT = os.path.join(ENV_DIR, 'www', 'static')
 
 STATIC_URL = '/static/'
-
-from .db import *
-
-try:
-    from settings_local import *
-except ImportError:
-    pass
-
