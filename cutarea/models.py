@@ -65,8 +65,8 @@ class Fca(models.Model):  #составная лесосека
     ar_fca = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 #    vol_zag = models.FloatField(blank=True, null=True)
     expl_ar = models.FloatField(blank=True, null=True)
-    cel_nazn = models.ForeignKey(ForestPurpose, on_delete=models.DO_NOTHING, verbose_name='целевое назначение') #классификатор
-    cat_zas = models.ForeignKey(ForestProtection, on_delete=models.DO_NOTHING, verbose_name='категория лесозащиты') #классификатор
+    cel_nazn = models.ForeignKey(ForestPurpose, on_delete=models.DO_NOTHING, verbose_name='целевое назначение',blank=True, null=True) #классификатор
+    cat_zas = models.ForeignKey(ForestProtection, on_delete=models.DO_NOTHING, verbose_name='категория лесозащиты',blank=True, null=True ) #классификатор
     geom = models.TextField(blank=True, null=True)  # This field type is a guess.
     video_cat = models.TextField(blank=True, null=True)
 

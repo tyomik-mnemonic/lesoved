@@ -26,6 +26,30 @@ class Renters(models.Model):
         verbose_name = 'арендатор'
         verbose_name_plural =  'арендаторы'
 
+
+class RentAddres(models.Model): #адрес арендатора
+    id = models.IntegerField(primary_key=True)
+    renters_id = models.ForeignKey(Renters, models.DO_NOTHING, verbose_name='рентер')
+    subject = models.ForeignKey(SubjectRf, models.DO_NOTHING, blank=True, null=True)
+    city = models.CharField(max_length=50, blank=True, null=True)
+    street = models.CharField(max_length=50, blank=True, null=True)
+    house = models.CharField(max_length=4, blank=True, null=True)
+    housing = models.CharField(max_length=3, blank=True, null=True)
+    building = models.CharField(max_length=2, blank=True, null=True)
+    office = models.CharField(max_length=3, blank=True, null=True)
+    telephon = models.CharField(max_length=16, blank=True, null=True)
+    type = models.TextField(blank=True, null=True)  # This field type is a guess.
+
+    #продублировать юрид адрес
+
+    class Meta:
+        managed = True
+        verbose_name = 'адрес'
+        verbose_name_plural = 'список адресов'
+
+
+
+
 class Agreement(models.Model):
     id = models.AutoField(primary_key=True)
     renters_id = models.ForeignKey(Renters, on_delete=models.DO_NOTHING, verbose_name='рентер')
@@ -54,24 +78,4 @@ class Agreement(models.Model):
 
 
 
-
-class RentAddres(models.Model): #адрес арендатора
-    id = models.IntegerField(primary_key=True)
-    renters_id = models.ForeignKey(Renters, models.DO_NOTHING, verbose_name='рентер')
-    subject = models.ForeignKey(SubjectRf, models.DO_NOTHING, blank=True, null=True)
-    city = models.CharField(max_length=50, blank=True, null=True)
-    street = models.CharField(max_length=50, blank=True, null=True)
-    house = models.CharField(max_length=4, blank=True, null=True)
-    housing = models.CharField(max_length=3, blank=True, null=True)
-    building = models.CharField(max_length=2, blank=True, null=True)
-    office = models.CharField(max_length=3, blank=True, null=True)
-    telephon = models.CharField(max_length=16, blank=True, null=True)
-    type = models.TextField(blank=True, null=True)  # This field type is a guess.
-
-    #продублировать юрид адрес
-
-    class Meta:
-        managed = True
-        verbose_name = 'адрес'
-        verbose_name_plural = 'список адресов'
 

@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/2.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
-
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -52,7 +51,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_gis',
     'django_filters',
-    'inspectdb_refactor',
 
 ] + MYOWN_APPS
 
@@ -88,39 +86,29 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lesoved.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'lsvd_project',
-        'USER': 'postgres',
-        'HOST': '172.17.0.2',
-        'PASSWORD': 'ntnhfrcby_19',
-        'PORT': '5432',
-        'OPTIONS': {
-            'options': '-c search_path=public'
-         }
-    }
-}
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'lesoved',
-        'USER': 'postgres',
-        'HOST': '172.16.16.40',
-        'PASSWORD': 'igt_3631',
-        'PORT': '25432',
-        'OPTIONS': {
-            'options': '-c search_path=forest'
-         }
-    }
-}
+from .db import *
 
+try:
+    from .settings_local import *
+except ImportError:
+    pass
+
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+#        'NAME': 'lesoved',
+#        'USER': 'postgres',
+#        'HOST': '172.17.0.2',
+#        'PASSWORD': 'igt_3631',
+#        'PORT': '5432',
+#        'OPTIONS': {
+#            'options': '-c search_path=forest'
+#         }
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -148,7 +136,10 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': DRF_PAGE_SIZE
+    'PAGE_SIZE': DRF_PAGE_SIZE,
+    "DATE_INPUT_FORMATS": ["%Y-%m-%d"],
+    "DATE_OUTPUT_FORMATS": ["%Y-%m-%d"],
+
 }
 
 
@@ -175,5 +166,3 @@ STATICFILES_DIRS = (
 STATIC_ROOT = os.path.join(ENV_DIR, 'www', 'static')
 
 STATIC_URL = '/static/'
-
-

@@ -108,7 +108,7 @@ Ext.define('Foresto.view.forms.Cutarea', {
                 }
             }]
     	},{
-        	xtype:'panel',
+        	xtype:'formpanel',
         	cls:'justbuttons',
         	layout: 'vbox',
             scrollable: true,
@@ -182,7 +182,7 @@ Ext.define('Foresto.view.forms.Cutarea', {
             	cls: 'buttonsforsave',
             	text:'сохранить',
             
-            	handler: function(me) {
+            	handler: function() {
             		var planform = this.up();
                   	var dataSetNew2 = planform.getValues();
                 	
@@ -194,9 +194,9 @@ Ext.define('Foresto.view.forms.Cutarea', {
                 }
            }]
     	},{
-        	xtype:'panel',
+        	xtype:'formpanel',
         	cls:'justbuttons',
-
+        	scope:this,
             scrollable: true,
         	title:'Фактическое использование',
         	items:[{
@@ -319,7 +319,17 @@ Ext.define('Foresto.view.forms.Cutarea', {
             	padding: 5,
             	width: 180,
             	cls: 'buttonsforsave',
-            	text:'добавить'
+            	text:'добавить',
+            	handler: function() {
+            		var factf = this.up();
+                  	var dataSetNew3 = factf.getValues();
+                	
+                	Ext.Ajax.request({
+                		url:'/api/cutarea-fca-use/',
+                		method: 'POST',
+                		params: dataSetNew3
+                	})
+                }
            }]
         }]
     
