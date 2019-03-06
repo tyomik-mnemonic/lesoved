@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/2.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
-
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -87,25 +86,29 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lesoved.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+from .db import *
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'lesoved',
-        'USER': 'postgres',
-        'HOST': '172.16.16.40',
-        'PASSWORD': 'igt_3631',
-        'PORT': '25432',
-        'OPTIONS': {
-            'options': '-c search_path=forest'
-         }
-    }
-}
+try:
+    from .settings_local import *
+except ImportError:
+    pass
 
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+#        'NAME': 'lesoved',
+#        'USER': 'postgres',
+#        'HOST': '172.17.0.2',
+#        'PASSWORD': 'igt_3631',
+#        'PORT': '5432',
+#        'OPTIONS': {
+#            'options': '-c search_path=forest'
+#         }
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -163,5 +166,3 @@ STATICFILES_DIRS = (
 STATIC_ROOT = os.path.join(ENV_DIR, 'www', 'static')
 
 STATIC_URL = '/static/'
-
-

@@ -1,6 +1,12 @@
 olMap = new ol.Map({
     layers: [
-        new ol.layer.Tile({source: new ol.source.OSM()}),
+        new ol.layer.Tile({
+            source: new ol.source.XYZ({
+                crossOrigin: 'anonymous',
+                url: 'http://tilessputnik.ru/{z}/{x}/{y}.png'
+            })
+        }),
+
         new ol.layer.Tile({
             source: new ol.source.TileWMS({
                 url: 'http://geo.forest.petserver.ru/geoserver/wms',
@@ -40,18 +46,5 @@ olMap = new ol.Map({
 Ext.define('Foresto.view.map.Map', {
     extend: 'GeoExt.component.Map',
     xtype: 'foresto-map',
-    id:'foresto-map',
-    height: '100%',
-    width: '100%',
     map: olMap
-    
-
 });
-
-
-
-
-/*
-    
-
- */
