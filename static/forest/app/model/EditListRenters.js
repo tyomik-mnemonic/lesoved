@@ -10,7 +10,7 @@ Ext.define('Foresto.model.EditListRenters', {
 	           'Ext.grid.plugin.ColumnResizing',
 	           'Ext.grid.plugin.MultiSelection',
 	           'Ext.grid.plugin.RowExpander',
-	'Foresto.model.RentsListModel'
+	           'Foresto.model.RentsListModel'
 	],
 	hideHeaders:false,
     autoScroll:true,
@@ -41,13 +41,13 @@ Ext.define('Foresto.model.EditListRenters', {
 		
 		}
 	},
-	initialize:
+	/*initialize:
 		function() {
 		a = Ext.getCmp('ext-headercontainer-1')
 		a.setHeight(100);
 		a.setWidth(100);
 		return a
-		},
+		},*/
 	header: {
 	    	height: 65,
 	        cls: 'header-cls',
