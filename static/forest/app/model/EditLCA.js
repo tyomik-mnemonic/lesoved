@@ -1,6 +1,8 @@
 Ext.define('Foresto.model.EditLCA', {
 	extend:'Ext.grid.Grid',
 	xtype: 'contlistII',
+	id: 'contlistII',
+	scope: this,
 	requires: [
 	'Ext.grid.plugin.Editable',
 	'Ext.grid.plugin.ViewOptions',
