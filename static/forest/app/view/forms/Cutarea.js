@@ -4,6 +4,9 @@ Ext.define('Foresto.view.forms.Cutarea', {
     id: 'cutareaform',
     scrollable: true,
     xtype: 'foresto-cutarea',
+    id:'foresto-cutarea',
+
+	scope: this,
     cls:'hdr2',
     tabBar: {
 		cls:'hdr2',

@@ -345,3 +345,46 @@ font-weight:bold;
 	font-style: normal;
 	
 }
+
+
+
+.mainbuttons{
+	background-color:#1E1846;
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 650;
+	font-size:14px;
+	color:#ffffff;
+	font-style: normal;
+	margin:0;
+	
+}
+
+
+
+
+.mainbuttons:hover{
+	background-color:#ffffff;
+	font-family: 'Exo 2', sans-serif;
+
+	font-weight: 650;
+	font-size:14px;
+	color:#145BA6; 
+	font-style: normal;
+	
+	
+}
+
+
+.mainbuttons:active{
+	background-color:#004A97;
+	font-family: 'Exo 2', sans-serif;
+
+	font-weight: 650;
+	color:#ffffff; 
+	font-size:14px;
+	font-style: normal;
+	
+}
+
+
+

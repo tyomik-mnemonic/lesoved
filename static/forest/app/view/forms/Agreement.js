@@ -10,7 +10,10 @@ Ext.define('Foresto.view.forms.Agreement', {
         
     },
     scrollable: true,
+
+	scope: this,
     xtype: 'foresto-agreement',
+    id:'foresto-agreement',
     defaults: {
     	xtype: 'textfield',
         labelWrap: true,

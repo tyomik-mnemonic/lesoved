@@ -21,6 +21,7 @@ Ext.application({
     // will gain a "viewport" plugin if it does not extend Ext.Viewport. With the
     // modern toolkit, the main view will be added to the Viewport.
     //
+    
     mainView: 'Foresto.view.main.Main',
     
     launch : function () {
@@ -41,7 +42,7 @@ Ext.application({
         	xtype:'panel',
         	title:'tesrt'
         });
-        }
+    }
 
     //-------------------------------------------------------------------------
     // Most customizations should be made to sencha.Application. If you need to
