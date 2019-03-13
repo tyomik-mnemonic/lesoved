@@ -1,36 +1,33 @@
 Ext.define('Foresto.view.map.Mapworkspace',{
 	extend:'Ext.panel.Panel',
-	requires:['Foresto.model.EditListRenters',
-	          ],
+	requires:[
+	    'Foresto.model.EditListRenters'
+	],
 	id:'mapWS',
 	collapsible:true,
 	clossable: true,
 	scope: this, 
 	tools: [{
-			type:'help'
-			},{
-			type:'search'		
-			},{
-			type:'close',
-			handler: function(e) {
-				
-					e.hide()
-			}
-			}],
-	
+	    type:'help'
+	},{
+        type:'search'		
+	},{
+		type:'close',
+		handler: function(e) {
+			e.hide()
+		}
+	}],
 	xtype:'mapWorkSpace',
 	layout: 'vbox',
 	itemId:'mapWS',
 	header: {
 		cls : 'hdr2'
-        
     },
-    title:'Договоры аренды',
+    title:'Договора аренды',
     items:[{
     	xtype:'rentlist',
     }],
     cls:'toolbars'
-    
 })
 /* 
  

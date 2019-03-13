@@ -12,7 +12,7 @@ Ext.application({
     requires: [
         'Foresto.view.main.Main',
         'Foresto.view.forms.LoginRoom',
-        'Foresto.view.map.Mapworkspace'
+        'Foresto.view.map.Mapworkspace',
     ],
     
     appFolder: 'app',
@@ -37,7 +37,7 @@ Ext.application({
         	centered:true
         	
         });
-      
+        
         testherna.add({
         	xtype:'panel',
         	title:'tesrt'
