@@ -19,6 +19,7 @@ from django.conf.urls import url
 from django.views.generic import TemplateView
 from rest_framework import routers
 
+from django.conf import settings
 
 from classification_list import views
 from renter.views import *
@@ -69,3 +70,12 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html'), name='index'),
     url(r'^admin/dynamic_raw_id/', include('dynamic_raw_id.urls')),
 ]
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+
+        # For django versions before 2.0:
+        # url(r'^__debug__/', include(debug_toolbar.urls)),
+
+    ] + urlpatterns
